@@ -20,3 +20,14 @@ INFO 498B - Final Project
 ###API's
 * [BigOven API](http://api2.bigoven.com/swagger/ui/index)
 * [Facebook iOS SDK (optional)](https://developers.facebook.com/docs/ios)
+
+
+##TODO Checklist for Core User Stories
+* Set up backend to call Recipe API
+* Parse Recipe
+* Develop and Design:
+  * Home Screen (list of recipes)
+  * Step by Step instruction view
+  * Final View (setting up the timer)
+* Implement Search Featur on Home Screen
+
