@@ -18,5 +18,5 @@ INFO 498B - Final Project
 * As a busy baker, I want to be able to alert someone else via text when baking is almost complete so they can turn off the oven if I cannot
 
 ###API's
-[BigOven API](http://api2.bigoven.com/swagger/ui/index)
-[Facebook iOS SDK (optional)](https://developers.facebook.com/docs/ios)
+* [BigOven API](http://api2.bigoven.com/swagger/ui/index)
+* [Facebook iOS SDK (optional)](https://developers.facebook.com/docs/ios)
