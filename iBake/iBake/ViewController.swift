@@ -29,10 +29,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         //TODO: switch to Recipe View
-        //let secondViewController = self.storyboard!.instantiateViewControllerWithIdentifier("question") as! QuestionController
-        //secondViewController.subject = retrieveSubjectsList()[indexPath.row]
-        //secondViewController.questionsList = questionsList[secondViewController.subject!]
-        //self.presentViewController(secondViewController, animated: true, completion: nil)
+        let recipeStepController = self.storyboard!.instantiateViewControllerWithIdentifier("recipeStep") as! StepController
+//        recipeStepController.subject = retrieveSubjectsList()[indexPath.row]
+//        secondViewController.questionsList = questionsList[secondViewController.subject!]
+        self.presentViewController(recipeStepController, animated: true, completion: nil)
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

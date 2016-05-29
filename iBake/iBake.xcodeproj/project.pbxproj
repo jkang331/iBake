@@ -16,6 +16,8 @@
 		9D7C022B1CFA74D900BD9BD4 /* pusheen_letsbake.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9D7C022A1CFA74D900BD9BD4 /* pusheen_letsbake.jpg */; };
 		9D7C022E1CFA927200BD9BD4 /* iBake_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 9D7C022C1CFA927200BD9BD4 /* iBake_2.png */; };
 		9D7C022F1CFA927200BD9BD4 /* iBake_3.png in Resources */ = {isa = PBXBuildFile; fileRef = 9D7C022D1CFA927200BD9BD4 /* iBake_3.png */; };
+		9D7C02311CFAA1BC00BD9BD4 /* TimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D7C02301CFAA1BC00BD9BD4 /* TimerViewController.swift */; };
+		9D7C02331CFAA8A900BD9BD4 /* StepController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D7C02321CFAA8A900BD9BD4 /* StepController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +32,8 @@
 		9D7C022A1CFA74D900BD9BD4 /* pusheen_letsbake.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = pusheen_letsbake.jpg; path = ../pusheen_letsbake.jpg; sourceTree = "<group>"; };
 		9D7C022C1CFA927200BD9BD4 /* iBake_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iBake_2.png; sourceTree = "<group>"; };
 		9D7C022D1CFA927200BD9BD4 /* iBake_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iBake_3.png; sourceTree = "<group>"; };
+		9D7C02301CFAA1BC00BD9BD4 /* TimerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerViewController.swift; sourceTree = "<group>"; };
+		9D7C02321CFAA8A900BD9BD4 /* StepController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +70,8 @@
 				383A46FA1CEA733D0097ABBC /* ViewController.swift */,
 				9D7C02281CFA6FEB00BD9BD4 /* RecipeCell.swift */,
 				383A46FC1CEA733E0097ABBC /* Main.storyboard */,
+				9D7C02301CFAA1BC00BD9BD4 /* TimerViewController.swift */,
+				9D7C02321CFAA8A900BD9BD4 /* StepController.swift */,
 				383A46FF1CEA733F0097ABBC /* Assets.xcassets */,
 				383A47011CEA733F0097ABBC /* LaunchScreen.storyboard */,
 				9D7C022A1CFA74D900BD9BD4 /* pusheen_letsbake.jpg */,
@@ -151,7 +157,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9D7C02311CFAA1BC00BD9BD4 /* TimerViewController.swift in Sources */,
 				9D7C02291CFA6FEB00BD9BD4 /* RecipeCell.swift in Sources */,
+				9D7C02331CFAA8A900BD9BD4 /* StepController.swift in Sources */,
 				383A46FB1CEA733D0097ABBC /* ViewController.swift in Sources */,
 				383A46F91CEA733D0097ABBC /* AppDelegate.swift in Sources */,
 			);
