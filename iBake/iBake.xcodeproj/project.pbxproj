@@ -12,6 +12,8 @@
 		383A46FE1CEA733E0097ABBC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 383A46FC1CEA733E0097ABBC /* Main.storyboard */; };
 		383A47001CEA733F0097ABBC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 383A46FF1CEA733F0097ABBC /* Assets.xcassets */; };
 		383A47031CEA733F0097ABBC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 383A47011CEA733F0097ABBC /* LaunchScreen.storyboard */; };
+		9D7C02291CFA6FEB00BD9BD4 /* RecipeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D7C02281CFA6FEB00BD9BD4 /* RecipeCell.swift */; };
+		9D7C022B1CFA74D900BD9BD4 /* pusheen_letsbake.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9D7C022A1CFA74D900BD9BD4 /* pusheen_letsbake.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +24,8 @@
 		383A46FF1CEA733F0097ABBC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		383A47021CEA733F0097ABBC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		383A47041CEA733F0097ABBC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9D7C02281CFA6FEB00BD9BD4 /* RecipeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeCell.swift; sourceTree = "<group>"; };
+		9D7C022A1CFA74D900BD9BD4 /* pusheen_letsbake.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = pusheen_letsbake.jpg; path = ../pusheen_letsbake.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,9 +60,11 @@
 			children = (
 				383A46F81CEA733D0097ABBC /* AppDelegate.swift */,
 				383A46FA1CEA733D0097ABBC /* ViewController.swift */,
+				9D7C02281CFA6FEB00BD9BD4 /* RecipeCell.swift */,
 				383A46FC1CEA733E0097ABBC /* Main.storyboard */,
 				383A46FF1CEA733F0097ABBC /* Assets.xcassets */,
 				383A47011CEA733F0097ABBC /* LaunchScreen.storyboard */,
+				9D7C022A1CFA74D900BD9BD4 /* pusheen_letsbake.jpg */,
 				383A47041CEA733F0097ABBC /* Info.plist */,
 			);
 			path = iBake;
@@ -124,6 +130,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				383A47031CEA733F0097ABBC /* LaunchScreen.storyboard in Resources */,
+				9D7C022B1CFA74D900BD9BD4 /* pusheen_letsbake.jpg in Resources */,
 				383A47001CEA733F0097ABBC /* Assets.xcassets in Resources */,
 				383A46FE1CEA733E0097ABBC /* Main.storyboard in Resources */,
 			);
@@ -136,6 +143,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9D7C02291CFA6FEB00BD9BD4 /* RecipeCell.swift in Sources */,
 				383A46FB1CEA733D0097ABBC /* ViewController.swift in Sources */,
 				383A46F91CEA733D0097ABBC /* AppDelegate.swift in Sources */,
 			);
@@ -289,6 +297,7 @@
 				383A47091CEA733F0097ABBC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
