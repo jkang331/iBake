@@ -9,10 +9,23 @@
 import UIKit
 import Foundation
 
-class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate{
+
+//, UISearchBarDelegate, UISearchDisplayDelegate {
 
     @IBOutlet weak var RecipesList: UITableView!
+    @IBOutlet weak var Search: UISearchBar!
     
+    let searchController = UISearchController(searchResultsController: nil)
+    
+    var recipes:[String]?;
+    var searchResults: [String]?;
+    
+    func filterContentForSearchText(searchText: String, scope: String = "All") {
+        searchResults = recipes?.filter({$0.containsString(searchText)})
+        
+        RecipesList.reloadData()
+    }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         //TODO: switch to Recipe View
@@ -40,8 +53,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         cell.PrepTime.text = "20 min"
         cell.RecipeImage?.image = UIImage(named: "pusheen_letsbake.jpg" )
         
-        
-        
         //Adding a Separator Line to the Bottom
         let separatorLineView = UIView.init(frame: CGRectMake(0, cell.frame.size.height - 0.5 , self.view.frame.width, 1))
         separatorLineView.backgroundColor = UIColor.lightGrayColor()
@@ -54,6 +65,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         super.viewDidLoad()
         self.RecipesList.delegate = self
         self.RecipesList.dataSource = self
+//        searchController.searchResultsUpdater = self
+        searchController.dimsBackgroundDuringPresentation = false
+        definesPresentationContext = true
+        RecipesList.tableHeaderView = searchController.searchBar
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -62,5 +78,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
 
 
+}
+
+extension ViewController: UISearchResultsUpdating {
+    func updateSearchResultsForSearchController(searchController: UISearchController) {
+        filterContentForSearchText(searchController.searchBar.text!)
+    }
 }
 
