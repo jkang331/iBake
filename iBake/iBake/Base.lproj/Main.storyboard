@@ -292,7 +292,14 @@
                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </textAttributes>
                                 <items>
-                                    <navigationItem title="Recipe Name" id="i4Q-Tg-aFr"/>
+                                    <navigationItem title="Recipe Name" id="i4Q-Tg-aFr">
+                                        <barButtonItem key="rightBarButtonItem" title="Return to Home" style="plain" id="9XY-09-ipM">
+                                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <connections>
+                                                <segue destination="BYZ-38-t0r" kind="show" id="MLW-py-jhS"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
                                 </items>
                             </navigationBar>
                         </subviews>
