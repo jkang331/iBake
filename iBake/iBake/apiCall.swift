@@ -76,13 +76,14 @@ func searchRecipe(keyWord: String!) -> NSDictionary {
     return result
 }
 
-func getRecipe(recipeID: String!) -> NSDictionary {
+func getRecipe(recipeID: Int!) -> NSDictionary {
     
     var result = [:]
     pingingServer = true
     
     // construct URL object to make HTTP request to API server
-    let apiURL: NSURL? = NSURL(string: recipeAPIAddress + recipeID + "?api_key=" + apiKey)
+    print(recipeAPIAddress + "\(recipeID)?api_key=" + apiKey)
+    let apiURL: NSURL? = NSURL(string: recipeAPIAddress + "\(recipeID)?api_key=" + apiKey)
     let request = NSMutableURLRequest(URL: apiURL!)
     let session = NSURLSession.sharedSession()
     request.HTTPMethod = "GET"

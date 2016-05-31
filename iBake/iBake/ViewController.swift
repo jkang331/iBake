@@ -16,6 +16,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     @IBOutlet weak var RecipesList: UITableView!
     @IBOutlet weak var Search: UISearchBar!
     
+    var tableData = searchRecipe("dessert")["Results"]
+    
     let searchController = UISearchController(searchResultsController: nil)
     
     var recipes:[String]?;
@@ -36,7 +38,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5; //TODO: this will be dependend on the number of recipes we have
+        //return 10; //TODO: this will be dependend on the number of recipes we have
+        return (tableData?.count)!
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -49,9 +52,24 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         let cell = tableView.dequeueReusableCellWithIdentifier(recipeIdentifier) as! RecipeCell
         
         //Configuring the cell
-        cell.Title.text = "Recipe Name"
-        cell.PrepTime.text = "20 min"
-        cell.RecipeImage?.image = UIImage(named: "pusheen_letsbake.jpg" )
+        let cellData = tableData![indexPath.row] as! NSDictionary
+        
+        let imgurl = NSURL(string: (cellData["ImageURL"] as? String)!)
+        let imgdata = NSData(contentsOfURL: imgurl!)
+        
+        // Code to get totalminutes shown from each recipe, takes WAY too long
+        //let recipeID = cellData["RecipeID"] as? Int
+        //let recipeData = getRecipe(recipeID!)
+        //cell.PrepTime.text = String((recipeData["TotalMinutes"] as? Int)!) + " minutes"
+        
+        var numStars = String(round((cellData["StarRating"] as? Double)! * 10.0)/10.0)
+        if (numStars == "0.0") {
+            numStars = "No"
+        }
+        
+        cell.Title.text = cellData["Title"] as? String
+        cell.PrepTime.text = numStars + " stars"
+        cell.RecipeImage?.image = UIImage(data: imgdata!)
         
         //Adding a Separator Line to the Bottom
         let separatorLineView = UIView.init(frame: CGRectMake(0, cell.frame.size.height - 0.5 , self.view.frame.width, 1))
@@ -71,8 +89,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         RecipesList.tableHeaderView = searchController.searchBar
         
         // TESTING TESTING TESTING
-        print("TESTING")
-        print(searchRecipe("dessert"))
+        //print("TESTING")
+        //print(searchRecipe("dessert")["Results"])
     }
 
     override func didReceiveMemoryWarning() {
