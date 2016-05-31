@@ -19,10 +19,13 @@ var resultsPerPage = "30"
 var searchMode: Bool = true // false: By title, true: Any match
 var searchParameter: String = "&title_kw="
 
+var searchData = [:]
+var recipeData = [:]
 
-func searchRecipe(keyWord: String!) -> NSDictionary {
+
+func searchRecipe(keyWord: String!) -> Void {
     
-    var result = [:]
+    //var result = [:]
 
     // trim white spaces
     var searchWord = keyWord.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
@@ -55,7 +58,8 @@ func searchRecipe(keyWord: String!) -> NSDictionary {
         if (statusCode == 200) {
             do {
                 let json = try NSJSONSerialization.JSONObjectWithData(data!, options:.AllowFragments)
-                result = json as! NSDictionary
+                searchData = json as! NSDictionary
+                print(searchData)
             } catch {
                 print("Error with Json: \(error)")
             }
@@ -63,40 +67,10 @@ func searchRecipe(keyWord: String!) -> NSDictionary {
     }
     
     task.resume()
-    
-    return result
-    
-    /*
-     
-     // error variables
-     //var error: AutoreleasingUnsafeMutablePointer<NSErrorPointer?> = nil
-     //var err: NSError?
-    
-     // response of the http request - deprecated?
-     // var response: AutoreleasingUnsafeMutablePointer<NSURLResponse?> = nil
-     
-     //data received by the http request using a synchronouse request
-     //var responseData = NSURLConnection.sendSynchronousRequest(request, returningResponse: response, error:nil) as NSData!
-     
-    // handle response data
-    if error != nil {
-        print("error")
-    } else {
-        
-        var json = NSJSONSerialization.JSONObjectWithData(responseData, options: .MutableLeaves, error: &err) as? NSDictionary
-        if let jsonDataFromAPI = json {
-            result = jsonDataFromAPI["Results"] as Array<AnyObject>
-        } else {
-            let jsonStr = NSString(data: responseData, encoding: NSUTF8StringEncoding)
-            print(jsonStr)
-            print("Error: did not receive json.")
-        }
-        
-    } */
 }
 
-func getRecipe(recipeID: String!) -> [AnyObject] {
-    var result = [AnyObject]()
+func getRecipe(recipeID: String!) -> Void {
+    //var result = [AnyObject]()
     
     // construct URL object to make HTTP request to API server
     let apiURL: NSURL? = NSURL(string: recipeAPIAddress + recipeID + "?api_key=" + apiKey)
@@ -117,7 +91,7 @@ func getRecipe(recipeID: String!) -> [AnyObject] {
         if (statusCode == 200) {
             do {
                 let json = try NSJSONSerialization.JSONObjectWithData(data!, options:.AllowFragments)
-                result = json as! [AnyObject]
+                recipeData = json as! NSDictionary
             } catch {
                 print("Error with Json: \(error)")
             }
@@ -126,5 +100,5 @@ func getRecipe(recipeID: String!) -> [AnyObject] {
     
     task.resume()
     
-    return result
+    //return result
 }
