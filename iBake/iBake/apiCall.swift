@@ -16,7 +16,7 @@ let recipeAPIAddress = "http://api.bigoven.com/recipe/" // needs {recipe_id}?api
 // API search variables
 var pageLimit = "1"
 var resultsPerPage = "30"
-var searchMode: Bool = false // false: By title, true: Any match
+var searchMode: Bool = true // false: By title, true: Any match
 var searchParameter: String = "&title_kw="
 
 
