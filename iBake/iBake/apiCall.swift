@@ -98,7 +98,7 @@ func getRecipe(recipeID: String!) -> [AnyObject] {
     var result = [AnyObject]()
     
     // construct URL object to make HTTP request to API server
-    let apiURL: NSURL? = NSURL(string: searchAPIAddress + recipeID + "?api_key=" + apiKey)
+    let apiURL: NSURL? = NSURL(string: recipeAPIAddress + recipeID + "?api_key=" + apiKey)
     let request = NSMutableURLRequest(URL: apiURL!)
     let session = NSURLSession.sharedSession()
     request.HTTPMethod = "GET"
