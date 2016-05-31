@@ -19,13 +19,13 @@ var resultsPerPage = "30"
 var searchMode: Bool = true // false: By title, true: Any match
 var searchParameter: String = "&title_kw="
 
-var searchData = [:]
-var recipeData = [:]
+var pingingServer = true
 
 
-func searchRecipe(keyWord: String!) -> Void {
+func searchRecipe(keyWord: String!) -> NSDictionary {
     
-    //var result = [:]
+    var result = [:]
+    pingingServer = true
 
     // trim white spaces
     var searchWord = keyWord.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
@@ -58,19 +58,28 @@ func searchRecipe(keyWord: String!) -> Void {
         if (statusCode == 200) {
             do {
                 let json = try NSJSONSerialization.JSONObjectWithData(data!, options:.AllowFragments)
-                searchData = json as! NSDictionary
-                print(searchData)
+                result = json as! NSDictionary
             } catch {
                 print("Error with Json: \(error)")
             }
         }
+        
+        pingingServer = false
     }
     
     task.resume()
+    
+    while (pingingServer) {
+        print("Pinging Search")
+    }
+    
+    return result
 }
 
-func getRecipe(recipeID: String!) -> Void {
-    //var result = [AnyObject]()
+func getRecipe(recipeID: String!) -> NSDictionary {
+    
+    var result = [:]
+    pingingServer = true
     
     // construct URL object to make HTTP request to API server
     let apiURL: NSURL? = NSURL(string: recipeAPIAddress + recipeID + "?api_key=" + apiKey)
@@ -91,14 +100,20 @@ func getRecipe(recipeID: String!) -> Void {
         if (statusCode == 200) {
             do {
                 let json = try NSJSONSerialization.JSONObjectWithData(data!, options:.AllowFragments)
-                recipeData = json as! NSDictionary
+                result = json as! NSDictionary
             } catch {
                 print("Error with Json: \(error)")
             }
         }
+        
+        pingingServer = false
     }
     
     task.resume()
     
-    //return result
+    while (pingingServer) {
+        print("Pinging Recipe")
+    }
+    
+    return result
 }

@@ -71,8 +71,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         RecipesList.tableHeaderView = searchController.searchBar
         
         // TESTING TESTING TESTING
-        //print("TESTING")
-        //searchRecipe("dessert")
+        print("TESTING")
+        print(searchRecipe("dessert"))
     }
 
     override func didReceiveMemoryWarning() {
