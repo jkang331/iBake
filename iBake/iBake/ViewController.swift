@@ -69,7 +69,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         searchController.dimsBackgroundDuringPresentation = false
         definesPresentationContext = true
         RecipesList.tableHeaderView = searchController.searchBar
-        
+        print("TESTING")
+        print(searchRecipe("dessert"))
     }
 
     override func didReceiveMemoryWarning() {

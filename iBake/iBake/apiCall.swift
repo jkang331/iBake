@@ -9,7 +9,7 @@
 import Foundation
 
 // API constants
-let apiKey = "dvxSfm9307Qf9RsF3rMU8dhs88XLZFkc"
+let apiKey = "5LS5n6Z6m4ZRnc7vyN8L5qa637iEy7XD"
 let searchAPIAddress = "http://api.bigoven.com/recipes?"
 let recipeAPIAddress = "http://api.bigoven.com/recipe/" // needs {recipe_id}?api_key={apiKey}
 
@@ -20,9 +20,9 @@ var searchMode: Bool = true // false: By title, true: Any match
 var searchParameter: String = "&title_kw="
 
 
-func searchRecipe(keyWord: String!) -> [AnyObject] {
+func searchRecipe(keyWord: String!) -> NSDictionary {
     
-    var result = [AnyObject]()
+    var result = [:]
 
     // trim white spaces
     var searchWord = keyWord.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
@@ -37,6 +37,7 @@ func searchRecipe(keyWord: String!) -> [AnyObject] {
     
     // construct URL object to make HTTP request to API server
     let apiURL: NSURL? = NSURL(string: searchAPIAddress + "api_key=" + apiKey + searchParameter + searchWord + "&pg=" + pageLimit + "&rpp=" + resultsPerPage)
+    print(apiURL)
     let request = NSMutableURLRequest(URL: apiURL!)
     let session = NSURLSession.sharedSession()
     request.HTTPMethod = "GET"
@@ -54,7 +55,7 @@ func searchRecipe(keyWord: String!) -> [AnyObject] {
         if (statusCode == 200) {
             do {
                 let json = try NSJSONSerialization.JSONObjectWithData(data!, options:.AllowFragments)
-                result = json as! [AnyObject]
+                result = json as! NSDictionary
             } catch {
                 print("Error with Json: \(error)")
             }
