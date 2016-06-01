@@ -227,7 +227,7 @@
                                     </mask>
                                 </variation>
                                 <connections>
-                                    <action selector="HomeButton:" destination="JCF-Kh-xxk" eventType="touchUpInside" id="Evg-mJ-hp1"/>
+                                    <action selector="setTimer:" destination="JCF-Kh-xxk" eventType="touchUpInside" id="9A9-HQ-nHg"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="stepLabel" text="Label" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="10" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xhe-UX-lbX" customClass="StepLabel" customModule="iBake" customModuleProvider="target">
@@ -272,6 +272,9 @@
                                         <exclude reference="aKv-Yg-ro8"/>
                                     </mask>
                                 </variation>
+                                <connections>
+                                    <action selector="viewIngredients:" destination="JCF-Kh-xxk" eventType="touchUpInside" id="IVY-9q-Y0X"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

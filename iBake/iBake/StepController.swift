@@ -26,32 +26,30 @@ class StepController: UIViewController{
     
     
     @IBAction func previousStepSelected(sender: AnyObject) {
-        let previousStepViewController = self.storyboard!.instantiateViewControllerWithIdentifier("recipeStep") as! StepController
-        
-        previousStepViewController.recipeDictionary = recipeDictionary
-        previousStepViewController.recipeName = recipeName
-        previousStepViewController.instructionsArray = instructionsArray
-        previousStepViewController.counter = counter - 1
-        previousStepViewController.ingredientsList = ingredientsList
-        previousStepViewController.displayedIngredients = displayedIngredients
-        
-        if (previousStepViewController.counter == 0) {
-            previousStepViewController.displayedIngredients = false
-            
-        }
-        
-        // TODO: would like this in the opposite direction
+//        let previousStepViewController = self.storyboard!.instantiateViewControllerWithIdentifier("recipeStep") as! StepController
+//        
+//        previousStepViewController.recipeDictionary = recipeDictionary
+//        previousStepViewController.recipeName = recipeName
+//        previousStepViewController.instructionsArray = instructionsArray
+//        previousStepViewController.counter = counter - 1
+//        previousStepViewController.ingredientsList = ingredientsList
+//        previousStepViewController.displayedIngredients = displayedIngredients
+//        
+//        if (previousStepViewController.counter == 0) {
+//            previousStepViewController.displayedIngredients = false
+//            
+//        }
 //        previousStepViewController.modalTransitionStyle = UIModalTransitionStyle.FlipHorizontal
-        self.presentViewController(previousStepViewController, animated: true, completion: nil)
+//        self.presentViewController(previousStepViewController, animated: true, completion: nil)
+
+        
+        
+        self.dismissViewControllerAnimated(true, completion: nil)
+        
         
     }
     
     @IBAction func nextStepSelected(sender: AnyObject) {
-        
-        
-        
-        // need to check if end or not
-        
         let nextStepViewController = self.storyboard!.instantiateViewControllerWithIdentifier("recipeStep") as! StepController
         nextStepViewController.recipeDictionary = recipeDictionary
         nextStepViewController.recipeName = recipeName
@@ -60,14 +58,27 @@ class StepController: UIViewController{
         nextStepViewController.counter = counter + 1
         nextStepViewController.displayedIngredients = displayedIngredients
         
-        
-        
         nextStepViewController.modalTransitionStyle = UIModalTransitionStyle.PartialCurl
         self.presentViewController(nextStepViewController, animated: true, completion: nil)
+        
+    }
+    
+    @IBAction func setTimer(sender: AnyObject) {
         
         
     }
     
+    
+    @IBAction func viewIngredients(sender: AnyObject) {
+        // popover
+        
+        let alertController = UIAlertController.init(title: "Ingredients", message: ingredientsList!, preferredStyle: .Alert)
+        let doneAction = UIAlertAction(title:"Done", style:.Default) {(action) in };
+        alertController.addAction(doneAction)
+        self.presentViewController(alertController, animated: true) {}
+
+        
+    }
     
     @IBAction func HomeButton(sender: AnyObject) {
         let homeController = self.storyboard!.instantiateViewControllerWithIdentifier("home") as! ViewController
@@ -89,7 +100,7 @@ class StepController: UIViewController{
         
         if (!displayedIngredients && ingredientsList == nil){
             // parse ingredients
-            var ingredientsList = ""
+            ingredientsList = ""
             let ingredientsArray = recipeDictionary!["Ingredients"] as! NSArray
 //            print(ingredientsArray.count)
             for i in ingredientsArray {
@@ -107,10 +118,10 @@ class StepController: UIViewController{
                 
                 if (name != "<null>" && name != "") {
                     if (notes == "<null>" || notes == "") {
-                        ingredientsList = ingredientsList + "\n[\(amount)] \(unit) \(name)"
+                        ingredientsList = ingredientsList! + "\n[\(amount)] \(unit) \(name)"
                         
                     }  else {
-                        ingredientsList = ingredientsList + "\n[\(amount)] \(unit) \(name) (\(notes))"
+                        ingredientsList = ingredientsList! + "\n[\(amount)] \(unit) \(name) (\(notes))"
                     }
                 }
                 
@@ -122,14 +133,14 @@ class StepController: UIViewController{
             if(!String(recipeDictionary!["TotalMinutes"]!).containsString("0")){
                 stepLabel.text = "Recipe Time: \(recipeDictionary!["TotalMinutes"]!) minutes\n\n\n \(ingredientsList)"
             }else {
-                stepLabel.text = "\(ingredientsList)"
+                stepLabel.text = "\(ingredientsList!)"
             }
             
             stepLabel.textAlignment = NSTextAlignment.Left
             displayedIngredients = true
             
         } else if (!displayedIngredients && ingredientsList != nil ){
-            stepLabel.text = ingredientsList
+            stepLabel.text = ingredientsList!
             stepLabel.textAlignment = NSTextAlignment.Left
             displayedIngredients = true
         }else {
