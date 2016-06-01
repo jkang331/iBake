@@ -9,7 +9,7 @@
 import UIKit
 import Foundation
 
-class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate{
+class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate{
 
 //, UISearchBarDelegate, UISearchDisplayDelegate {
 
@@ -67,6 +67,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             numStars = "No"
         }
         
+        cell.RecipeID = cellData["RecipeID"] as? Int
         cell.Title.text = cellData["Title"] as? String
         cell.PrepTime.text = numStars + " stars"
         cell.RecipeImage?.image = UIImage(data: imgdata!)
@@ -79,10 +80,21 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         return cell;
     }
     
+    // SearchBarDelegate
+    /*func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+        print("searchText \(searchText)")
+    }
+    
+    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+        print("searchText \(searchBar.text)")
+    }*/
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.RecipesList.delegate = self
         self.RecipesList.dataSource = self
+        self.Search.delegate = self
 //        searchController.searchResultsUpdater = self
         searchController.dimsBackgroundDuringPresentation = false
         definesPresentationContext = true
