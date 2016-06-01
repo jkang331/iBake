@@ -83,6 +83,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         return cell;
     }
     
+    override func didRotateFromInterfaceOrientation(fromInterfaceOrientation: UIInterfaceOrientation) {
+        super.didRotateFromInterfaceOrientation(fromInterfaceOrientation)
+        RecipesList.reloadData()
+    }
+    
     // SearchBarDelegate
     /*func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
         print("searchText \(searchText)")

@@ -20,6 +20,8 @@ class StepController: UIViewController{
     @IBOutlet weak var Navbar: UINavigationBar!
     @IBOutlet weak var stepTitle: UILabel!
     @IBOutlet weak var stepLabel: UILabel!
+    @IBOutlet weak var ViewIngredientsButton: UIButton!
+    @IBOutlet weak var setTimerButton: UIButton!
     
     var counter = 0;
     var displayedIngredients = false;
@@ -64,8 +66,9 @@ class StepController: UIViewController{
     }
     
     @IBAction func setTimer(sender: AnyObject) {
-        
-        
+        let timerViewController = self.storyboard!.instantiateViewControllerWithIdentifier("timer") as! TimerViewController
+        timerViewController.instruction = stepLabel.text
+        self.presentViewController(timerViewController, animated: true, completion: nil)
     }
     
     
@@ -91,7 +94,8 @@ class StepController: UIViewController{
             stepTitle.text = "Ingredients"
             previousButton.enabled = false
         } else {
-            stepTitle.text = "Step \(counter)"
+            updateLabel() // to parse the instructions in order to have instructionsArray != nil
+            stepTitle.text = "Step \(counter) out of \(instructionsArray!.count)"
             
         }
     }
@@ -102,7 +106,7 @@ class StepController: UIViewController{
             // parse ingredients
             ingredientsList = ""
             let ingredientsArray = recipeDictionary!["Ingredients"] as! NSArray
-//            print(ingredientsArray.count)
+
             for i in ingredientsArray {
                 let ingredient = i as! NSDictionary
                 print(i)
@@ -131,7 +135,7 @@ class StepController: UIViewController{
             
             // Will display total time
             if(!String(recipeDictionary!["TotalMinutes"]!).containsString("0")){
-                stepLabel.text = "Recipe Time: \(recipeDictionary!["TotalMinutes"]!) minutes\n\n\n \(ingredientsList)"
+                stepLabel.text = "Recipe Time: \(recipeDictionary!["TotalMinutes"]!) minutes\n\n\n \(ingredientsList!)"
             }else {
                 stepLabel.text = "\(ingredientsList!)"
             }
@@ -171,6 +175,7 @@ class StepController: UIViewController{
     }
     
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -178,10 +183,17 @@ class StepController: UIViewController{
         updateTitle()
         updateLabel()
         
-        if(stepTitle.text != "Ingredients" && instructionsArray != nil && (counter + 1) >= instructionsArray!.count) {
+        if(stepTitle.text != "Ingredients" && instructionsArray != nil && (counter) >= instructionsArray!.count) {
             nextButton.enabled = false
         }
-        print(recipeDictionary!["PrimaryIngredient"])
+        
+        if(stepTitle.text == "Ingredients") {
+            ViewIngredientsButton.enabled = false
+        }
+        
+        if(stepTitle.text == "Ingredients" || !(stepLabel.text!.containsString("minute") || stepLabel.text!.containsString("hour"))) {
+            setTimerButton.enabled = false
+        }
         
     }
     

@@ -15,6 +15,9 @@ class TimerViewController: UIViewController{
     @IBOutlet weak var playButton: UIBarButtonItem!
     @IBOutlet weak var pauseButton: UIBarButtonItem!
     
+    @IBOutlet weak var stepLabel: StepLabel!
+    var instruction :String?
+    
 //    var startTime = NSTimeInterval()
     var startingTime = NSTimeInterval(2)
     var elapsedTime = NSTimeInterval()
@@ -24,6 +27,12 @@ class TimerViewController: UIViewController{
     var timer = NSTimer();
     var doneBlinkerTimer = NSTimer();
     var blinkStatus = false
+    
+    @IBAction func donePressed(sender: AnyObject) {
+        self.dismissViewControllerAnimated(true, completion: nil)
+        
+    }
+    
     
     @IBAction func resetPressed(sender: AnyObject) {
         timer.invalidate()
@@ -98,6 +107,8 @@ class TimerViewController: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        stepLabel.text = instruction!
         
         elapsedTime = startingTime;
         let interval = Int(elapsedTime)
