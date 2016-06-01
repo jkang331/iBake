@@ -105,17 +105,26 @@ class StepController: UIViewController{
                     amount = NSString.localizedStringWithFormat("%.02f", num!) as String
                 }
                 
-                
-                if (notes == "<null>" || notes == "") {
-                    ingredientsList = ingredientsList + "\n[\(amount)] \(unit) \(name)"
-                    
-                }  else {
-                    ingredientsList = ingredientsList + "\n[\(amount)] \(unit) \(name) (\(notes))"
+                if (name != "<null>" && name != "") {
+                    if (notes == "<null>" || notes == "") {
+                        ingredientsList = ingredientsList + "\n[\(amount)] \(unit) \(name)"
+                        
+                    }  else {
+                        ingredientsList = ingredientsList + "\n[\(amount)] \(unit) \(name) (\(notes))"
+                    }
                 }
                 
                 
+                
             }
-            stepLabel.text = ingredientsList
+            
+            // Will display total time
+            if(!String(recipeDictionary!["TotalMinutes"]!).containsString("0")){
+                stepLabel.text = "Recipe Time: \(recipeDictionary!["TotalMinutes"]!) minutes\n\n\n \(ingredientsList)"
+            }else {
+                stepLabel.text = "\(ingredientsList)"
+            }
+            
             stepLabel.textAlignment = NSTextAlignment.Left
             displayedIngredients = true
             
@@ -126,7 +135,7 @@ class StepController: UIViewController{
         }else {
             
             // First check if it is directing to a webpage
-            if String(recipeDictionary!["Instructions"]!).containsString("www.") {
+            if String(recipeDictionary!["Instructions"]!).containsString("www.") || String(recipeDictionary!["Instructions"]!).containsString("http:") {
                 
                 //TODO: display webview here instead
                 instructionsArray = [String(recipeDictionary!["Instructions"]!) + ""]
@@ -135,6 +144,9 @@ class StepController: UIViewController{
             } else{
                 if (instructionsArray == nil || instructionsArray!.count == 0) {
                     // parse instructions and fill array
+                    
+                    //TODO: check if instructions contain ":" (random edge case on chocolate eclair dessert -_-)
+                    
                     let instructions = String(recipeDictionary!["Instructions"]!)
                     instructionsArray = instructions.characters.split(".").map(String.init)
                 }
@@ -158,7 +170,6 @@ class StepController: UIViewController{
         if(stepTitle.text != "Ingredients" && instructionsArray != nil && (counter + 1) >= instructionsArray!.count) {
             nextButton.enabled = false
         }
-        print(recipeDictionary!["TotalMinutes"])
         print(recipeDictionary!["PrimaryIngredient"])
         
     }
