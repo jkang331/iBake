@@ -13,4 +13,5 @@ class RecipeCell : UITableViewCell {
     @IBOutlet weak var Title: UILabel!
     @IBOutlet weak var PrepTime: UILabel!
     @IBOutlet weak var RecipeImage: UIImageView!
+    var RecipeID: Int!
 }
