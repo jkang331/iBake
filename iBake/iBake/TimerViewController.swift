@@ -15,11 +15,14 @@ class TimerViewController: UIViewController{
     @IBOutlet weak var playButton: UIBarButtonItem!
     @IBOutlet weak var pauseButton: UIBarButtonItem!
     
+    @IBOutlet weak var timerPicker: UIDatePicker!
+    
     @IBOutlet weak var stepLabel: StepLabel!
     var instruction :String?
+    var recipeName : String?
     
 //    var startTime = NSTimeInterval()
-    var startingTime = NSTimeInterval(2)
+    var startingTime = NSTimeInterval(0)
     var elapsedTime = NSTimeInterval()
     var seconds = 0
     var minutes = 0
@@ -36,15 +39,18 @@ class TimerViewController: UIViewController{
     
     @IBAction func resetPressed(sender: AnyObject) {
         timer.invalidate()
+        startingTime = timerPicker.countDownDuration
+        
         elapsedTime = startingTime;
         let interval = Int(elapsedTime)
-        hours = interval / 36000
+        hours = interval / 3600
         minutes = (interval / 60) % 60
         seconds = interval % 60
         
         timerLabel.text = formatTime()
         pauseButton.enabled = false
         playButton.enabled = true
+        timerPicker.userInteractionEnabled = true
         doneBlinkerTimer.invalidate()
     }
     
@@ -54,6 +60,7 @@ class TimerViewController: UIViewController{
         
             playButton.enabled = false
             pauseButton.enabled = true
+            timerPicker.userInteractionEnabled = false
     }
     
     
@@ -61,6 +68,7 @@ class TimerViewController: UIViewController{
         timer.invalidate()
         pauseButton.enabled = false
         playButton.enabled = true
+        timerPicker.userInteractionEnabled = true
     }
     
     
@@ -69,7 +77,7 @@ class TimerViewController: UIViewController{
         
         if (elapsedTime > -1 ) {
             let interval = Int(elapsedTime)
-            hours = interval / 36000
+            hours = interval / 3600
             minutes = (interval / 60) % 60
             seconds = interval % 60
         
@@ -83,6 +91,7 @@ class TimerViewController: UIViewController{
         }
     
     }
+    
     
     
     // NOTE: don't really like this blinking maybe add sound effect instead?
@@ -105,14 +114,32 @@ class TimerViewController: UIViewController{
 
     }
     
+    func updateLabel(datePicker: UIDatePicker) {
+        elapsedTime = timerPicker.countDownDuration;
+        let interval = Int(elapsedTime)
+        hours = interval / 3600
+        minutes = (interval / 60) % 60
+        seconds = interval % 60
+        
+        timerLabel.text = formatTime()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        Navbar.topItem!.title = recipeName!
         stepLabel.text = instruction!
+        
+        
+        timerPicker.datePickerMode = UIDatePickerMode.CountDownTimer
+        let aSelector : Selector = #selector(TimerViewController.updateLabel)
+        timerPicker.addTarget(self, action: aSelector, forControlEvents: UIControlEvents.ValueChanged)
+        
+        startingTime = timerPicker.countDownDuration
         
         elapsedTime = startingTime;
         let interval = Int(elapsedTime)
-        hours = interval / 36000
+        hours = interval / 3600
         minutes = (interval / 60) % 60
         seconds = interval % 60
         

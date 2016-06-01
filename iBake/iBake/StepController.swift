@@ -67,7 +67,8 @@ class StepController: UIViewController{
     
     @IBAction func setTimer(sender: AnyObject) {
         let timerViewController = self.storyboard!.instantiateViewControllerWithIdentifier("timer") as! TimerViewController
-        timerViewController.instruction = stepLabel.text
+        timerViewController.instruction = "Step \(counter): \(stepLabel.text!)"
+        timerViewController.recipeName = recipeName
         self.presentViewController(timerViewController, animated: true, completion: nil)
     }
     
@@ -135,7 +136,7 @@ class StepController: UIViewController{
             
             // Will display total time
             if(!String(recipeDictionary!["TotalMinutes"]!).containsString("0")){
-                stepLabel.text = "Recipe Time: \(recipeDictionary!["TotalMinutes"]!) minutes\n\n\n \(ingredientsList!)"
+                stepLabel.text = "Recipe Time: \(recipeDictionary!["TotalMinutes"]!) minutes\n\(ingredientsList!)"
             }else {
                 stepLabel.text = "\(ingredientsList!)"
             }
