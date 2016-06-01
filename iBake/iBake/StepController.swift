@@ -39,11 +39,9 @@ class StepController: UIViewController{
             previousStepViewController.displayedIngredients = false
             
         }
-        previousStepViewController.modalTransitionStyle = UIModalTransitionStyle.FlipHorizontal
-//        UIView.beginAnimations("LeftFlip", context: nil)
-//        UIView.setAnimationDuration(0.8)
-//        UIView.setAnimationTransition(.FlipFromLeft, forView: view , cache: true)
-//        UIView.commitAnimations()
+        
+        // TODO: would like this in the opposite direction
+//        previousStepViewController.modalTransitionStyle = UIModalTransitionStyle.FlipHorizontal
         self.presentViewController(previousStepViewController, animated: true, completion: nil)
         
     }
@@ -53,7 +51,6 @@ class StepController: UIViewController{
         
         
         // need to check if end or not
-        
         
         let nextStepViewController = self.storyboard!.instantiateViewControllerWithIdentifier("recipeStep") as! StepController
         nextStepViewController.recipeDictionary = recipeDictionary
@@ -94,7 +91,7 @@ class StepController: UIViewController{
             // parse ingredients
             var ingredientsList = ""
             let ingredientsArray = recipeDictionary!["Ingredients"] as! NSArray
-            print(ingredientsArray.count)
+//            print(ingredientsArray.count)
             for i in ingredientsArray {
                 let ingredient = i as! NSDictionary
                 print(i)
@@ -127,9 +124,23 @@ class StepController: UIViewController{
             stepLabel.textAlignment = NSTextAlignment.Left
             displayedIngredients = true
         }else {
-            //get from instructions
-            stepLabel.text = String(recipeDictionary!["Instructions"])
-            print(recipeDictionary!["Instructions"])
+            
+            // First check if it is directing to a webpage
+            if String(recipeDictionary!["Instructions"]!).containsString("www.") {
+                
+                //TODO: display webview here instead
+                instructionsArray = [String(recipeDictionary!["Instructions"]!) + ""]
+                stepLabel.text = instructionsArray![0]
+                
+            } else{
+                if (instructionsArray == nil || instructionsArray!.count == 0) {
+                    // parse instructions and fill array
+                    let instructions = String(recipeDictionary!["Instructions"]!)
+                    instructionsArray = instructions.characters.split(".").map(String.init)
+                }
+            
+                stepLabel.text = instructionsArray![counter - 1] + "."
+            }
         }
         
         
@@ -144,7 +155,9 @@ class StepController: UIViewController{
         updateTitle()
         updateLabel()
         
-        
+        if(stepTitle.text != "Ingredients" && instructionsArray != nil && (counter + 1) >= instructionsArray!.count) {
+            nextButton.enabled = false
+        }
         print(recipeDictionary!["TotalMinutes"])
         print(recipeDictionary!["PrimaryIngredient"])
         
