@@ -30,15 +30,18 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        //TODO: switch to Recipe View
+        // 1. retrieve recipe
+        // 2. parse recipe --> get ingredients + get instructions
+        let cellSelected = tableView.cellForRowAtIndexPath(indexPath) as! RecipeCell
+        let recipeDictionary = getRecipe(cellSelected.RecipeID);
+        
         let recipeStepController = self.storyboard!.instantiateViewControllerWithIdentifier("recipeStep") as! StepController
-//        recipeStepController.subject = retrieveSubjectsList()[indexPath.row]
-//        secondViewController.questionsList = questionsList[secondViewController.subject!]
+        recipeStepController.recipeDictionary = recipeDictionary
+        recipeStepController.recipeName = cellSelected.Title.text
         self.presentViewController(recipeStepController, animated: true, completion: nil)
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        //return 10; //TODO: this will be dependend on the number of recipes we have
         return (tableData?.count)!
     }
     
@@ -78,6 +81,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         cell.addSubview(separatorLineView)
         
         return cell;
+    }
+    
+    override func didRotateFromInterfaceOrientation(fromInterfaceOrientation: UIInterfaceOrientation) {
+        super.didRotateFromInterfaceOrientation(fromInterfaceOrientation)
+        RecipesList.reloadData()
     }
     
     // SearchBarDelegate
