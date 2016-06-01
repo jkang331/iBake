@@ -173,23 +173,11 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xhe-UX-lbX">
-                                <rect key="frame" x="20" y="126" width="560" height="201"/>
-                                <color key="backgroundColor" red="0.9882352941176471" green="0.94846443965517246" blue="0.93961080121703844" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="201" id="hkO-Mf-Bn8"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="keyPath">
-                                        <integer key="value" value="10"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q1E-eR-vHK">
                                 <rect key="frame" x="20" y="97" width="560" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="GpS-dl-ZZK"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -211,17 +199,38 @@
                                     <action selector="HomeButton:" destination="JCF-Kh-xxk" eventType="touchUpInside" id="CNc-K2-e67"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="stepLabel" text="Label" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="10" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xhe-UX-lbX" customClass="StepLabel" customModule="iBake" customModuleProvider="target">
+                                <rect key="frame" x="20" y="136" width="560" height="362"/>
+                                <color key="backgroundColor" red="0.9882352941176471" green="0.94846443965517246" blue="0.93961080121703844" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="121" id="hkO-Mf-Bn8"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="keyPath">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="hkO-Mf-Bn8"/>
+                                    </mask>
+                                </variation>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="leadingMargin" secondItem="xhe-UX-lbX" secondAttribute="leading" id="3MS-QB-eNn"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Q1E-eR-vHK" secondAttribute="trailing" id="Afu-yP-L0k"/>
                             <constraint firstItem="Q1E-eR-vHK" firstAttribute="top" secondItem="3gV-at-Us9" secondAttribute="bottom" constant="33" id="NDP-kh-XwQ"/>
+                            <constraint firstItem="KJ3-Vc-S1n" firstAttribute="top" secondItem="xhe-UX-lbX" secondAttribute="bottom" constant="26" id="TM0-i8-YbP"/>
                             <constraint firstItem="Q1E-eR-vHK" firstAttribute="centerX" secondItem="xMX-ri-cdq" secondAttribute="centerX" id="WCn-d9-HsP"/>
                             <constraint firstItem="KJ3-Vc-S1n" firstAttribute="centerX" secondItem="xMX-ri-cdq" secondAttribute="centerX" id="d0m-sT-ZjO"/>
                             <constraint firstAttribute="leadingMargin" secondItem="Q1E-eR-vHK" secondAttribute="leading" id="fXq-Io-pDL"/>
                             <constraint firstItem="3gV-at-Us9" firstAttribute="leading" secondItem="xMX-ri-cdq" secondAttribute="leading" id="kWv-ed-Qfi"/>
-                            <constraint firstItem="xhe-UX-lbX" firstAttribute="top" secondItem="Q1E-eR-vHK" secondAttribute="bottom" constant="8" id="oph-Xo-iAS"/>
+                            <constraint firstItem="xhe-UX-lbX" firstAttribute="top" secondItem="Q1E-eR-vHK" secondAttribute="bottom" constant="18" id="oph-Xo-iAS"/>
                             <constraint firstItem="QgL-vU-W7y" firstAttribute="top" secondItem="KJ3-Vc-S1n" secondAttribute="bottom" constant="46" id="smX-1T-ynB"/>
                             <constraint firstAttribute="trailing" secondItem="3gV-at-Us9" secondAttribute="trailing" id="w8Z-up-pew"/>
                             <constraint firstItem="3gV-at-Us9" firstAttribute="top" secondItem="xMX-ri-cdq" secondAttribute="top" id="wZO-rg-G6P"/>

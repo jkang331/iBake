@@ -11,6 +11,8 @@ import UIKit
 class StepController: UIViewController{
     var recipeDictionary : NSDictionary?
     var recipeName : String?
+    var ingredientsList : String?
+    var instructionsArray : [String]?
     
     @IBOutlet weak var previousButton: UIBarButtonItem!
     @IBOutlet weak var nextButton: UIBarButtonItem!
@@ -27,6 +29,9 @@ class StepController: UIViewController{
     }
     
     @IBAction func nextStepSelected(sender: AnyObject) {
+        //SET displayedIngredients to true
+        //handoff on variables
+        
     }
     
     
@@ -47,13 +52,38 @@ class StepController: UIViewController{
     }
     
     func updateLabel() {
-        if (!displayedIngredients){
+        
+        if (!displayedIngredients && ingredientsList == nil){
             // parse ingredients
-            //not sure what this struct is
-            let ingredientsBlock = recipeDictionary!["Ingredients"]
-//            print(ingredientsBlock.count)
-            print(recipeDictionary!["Ingredients"])
-            print(recipeDictionary!["Ingredients"])  //get's main ingredient
+            var ingredientsList = ""
+            let ingredientsArray = recipeDictionary!["Ingredients"] as! NSArray
+            print(ingredientsArray.count)
+            for i in ingredientsArray {
+                let ingredient = i as! NSDictionary
+                print(i)
+                let name = String(ingredient["Name"]!).stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+                var amount = String(ingredient["Quantity"]!).stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+                let unit = String(ingredient["Unit"]!).stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()).stringByReplacingOccurrencesOfString("(", withString: "").stringByReplacingOccurrencesOfString(")", withString: "").stringByReplacingOccurrencesOfString("<null>", withString: "")
+                let notes = String(ingredient["PreparationNotes"]!).stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()).stringByReplacingOccurrencesOfString("(", withString: "").stringByReplacingOccurrencesOfString(")", withString: "")
+                
+                if(amount.containsString(".")){
+                    let num = Float(amount)
+                    amount = NSString.localizedStringWithFormat("%.02f", num!) as String
+                }
+                
+                
+                if (notes == "<null>" || notes == "") {
+                    ingredientsList = ingredientsList + "\n[\(amount)] \(unit) \(name)"
+                    
+                }  else {
+                    ingredientsList = ingredientsList + "\n[\(amount)] \(unit) \(name) (\(notes))"
+                }
+                
+                
+            }
+            stepLabel.text = ingredientsList
+            stepLabel.textAlignment = NSTextAlignment.Left
+            
         } else {
             //get from instructions
             stepLabel.text = String(recipeDictionary!["Instructions"])
