@@ -39,6 +39,7 @@ func searchRecipe(keyWord: String!) -> NSDictionary {
     }
     
     // construct URL object to make HTTP request to API server
+    print(searchWord)
     let apiURL: NSURL? = NSURL(string: searchAPIAddress + "api_key=" + apiKey + searchParameter + searchWord + "&pg=" + pageLimit + "&rpp=" + resultsPerPage)
     print(apiURL)
     let request = NSMutableURLRequest(URL: apiURL!)

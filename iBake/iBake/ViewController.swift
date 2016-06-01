@@ -9,12 +9,12 @@
 import UIKit
 import Foundation
 
-class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate{
+class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, UISearchDisplayDelegate{
 
 //, UISearchBarDelegate, UISearchDisplayDelegate {
 
     @IBOutlet weak var RecipesList: UITableView!
-    @IBOutlet weak var Search: UISearchBar!
+    @IBOutlet weak var SearchBar: UISearchBar!
     
     var tableData = searchRecipe("dessert")["Results"]
     
@@ -32,6 +32,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         // 1. retrieve recipe
         // 2. parse recipe --> get ingredients + get instructions
+        
+        // end any instance of the search controller
+        searchController.active = false
+        
         let cellSelected = tableView.cellForRowAtIndexPath(indexPath) as! RecipeCell
         let recipeDictionary = getRecipe(cellSelected.RecipeID);
         
@@ -89,28 +93,26 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     // SearchBarDelegate
-    /*func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
-        print("searchText \(searchText)")
+    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
+        print("cancel button called")
     }
     
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
-        print("searchText \(searchBar.text)")
-    }*/
+        print("search button called")
+        tableData = searchRecipe("dessert \(searchBar.text!)")["Results"]
+        RecipesList.reloadData()
+    }
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.RecipesList.delegate = self
         self.RecipesList.dataSource = self
-        self.Search.delegate = self
-//        searchController.searchResultsUpdater = self
+        searchController.searchBar.delegate = self
+        //searchController.searchResultsUpdater = self
         searchController.dimsBackgroundDuringPresentation = false
         definesPresentationContext = true
         RecipesList.tableHeaderView = searchController.searchBar
-        
-        // TESTING TESTING TESTING
-        //print("TESTING")
-        //print(searchRecipe("dessert")["Results"])
     }
 
     override func didReceiveMemoryWarning() {
