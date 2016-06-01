@@ -47,13 +47,13 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Prep Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JNK-Qk-aha">
-                                                    <rect key="frame" x="95" y="37" width="497" height="18"/>
+                                                    <rect key="frame" x="95" y="34" width="497" height="18"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recipe Name " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gBl-Kp-HG3">
-                                                    <rect key="frame" x="95" y="13" width="497" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recipe Name " textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gBl-Kp-HG3">
+                                                    <rect key="frame" x="95" y="10" width="497" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="497" id="ISS-4o-sVj"/>
                                                     </constraints>
@@ -66,7 +66,7 @@
                                                 <constraint firstItem="gBl-Kp-HG3" firstAttribute="leading" secondItem="oD1-lv-Wgx" secondAttribute="trailing" constant="8" symbolic="YES" id="3g5-dt-s5I"/>
                                                 <constraint firstItem="JNK-Qk-aha" firstAttribute="top" secondItem="gBl-Kp-HG3" secondAttribute="bottom" constant="3" id="7lr-bZ-wQ6"/>
                                                 <constraint firstItem="oD1-lv-Wgx" firstAttribute="leading" secondItem="Ybr-up-M8S" secondAttribute="leadingMargin" constant="10" id="DGo-NP-a2g"/>
-                                                <constraint firstItem="gBl-Kp-HG3" firstAttribute="top" secondItem="Ybr-up-M8S" secondAttribute="topMargin" constant="5" id="Rav-Rm-TCL"/>
+                                                <constraint firstItem="gBl-Kp-HG3" firstAttribute="top" secondItem="Ybr-up-M8S" secondAttribute="topMargin" constant="2" id="Rav-Rm-TCL"/>
                                                 <constraint firstItem="gBl-Kp-HG3" firstAttribute="leading" secondItem="JNK-Qk-aha" secondAttribute="leading" id="XWz-pf-Xrs"/>
                                                 <constraint firstItem="gBl-Kp-HG3" firstAttribute="leading" secondItem="oD1-lv-Wgx" secondAttribute="trailing" constant="8" id="fsv-wQ-Sjh"/>
                                                 <constraint firstItem="oD1-lv-Wgx" firstAttribute="bottom" secondItem="Ybr-up-M8S" secondAttribute="bottomMargin" id="kFh-YC-hnR"/>
@@ -168,7 +168,6 @@
                                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <connections>
                                                 <action selector="nextStepSelected:" destination="JCF-Kh-xxk" id="YCB-6j-m60"/>
-                                                <segue destination="wsj-BC-ouT" kind="show" id="rtx-VD-l2k"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
@@ -189,7 +188,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Step Number" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q1E-eR-vHK">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q1E-eR-vHK">
                                 <rect key="frame" x="20" y="97" width="560" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -231,6 +230,10 @@
                     </view>
                     <connections>
                         <outlet property="Navbar" destination="3gV-at-Us9" id="Yp7-aU-rbH"/>
+                        <outlet property="nextButton" destination="fBA-Tm-Frm" id="gF2-ru-jZE"/>
+                        <outlet property="previousButton" destination="Ep9-s0-u0g" id="hl5-ee-34H"/>
+                        <outlet property="stepLabel" destination="xhe-UX-lbX" id="Hea-tb-99h"/>
+                        <outlet property="stepTitle" destination="Q1E-eR-vHK" id="bin-7y-qVK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kXa-cu-ocM" userLabel="First Responder" sceneMemberID="firstResponder"/>
