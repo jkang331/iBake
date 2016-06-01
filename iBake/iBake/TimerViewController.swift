@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 class TimerViewController: UIViewController{
 
@@ -21,15 +22,13 @@ class TimerViewController: UIViewController{
     var instruction :String?
     var recipeName : String?
     
-//    var startTime = NSTimeInterval()
-    var startingTime = NSTimeInterval(0)
+    var startingTime = NSTimeInterval(2)
     var elapsedTime = NSTimeInterval()
     var seconds = 0
     var minutes = 0
     var hours = 0
     var timer = NSTimer();
-    var doneBlinkerTimer = NSTimer();
-    var blinkStatus = false
+    var audioPlayer = AVAudioPlayer()
     
     @IBAction func donePressed(sender: AnyObject) {
         self.dismissViewControllerAnimated(true, completion: nil)
@@ -51,7 +50,7 @@ class TimerViewController: UIViewController{
         pauseButton.enabled = false
         playButton.enabled = true
         timerPicker.userInteractionEnabled = true
-        doneBlinkerTimer.invalidate()
+//        doneBlinkerTimer.invalidate()
     }
     
     @IBAction func playPressed(sender: AnyObject) {
@@ -85,25 +84,31 @@ class TimerViewController: UIViewController{
             
         } else {
             timer.invalidate()
-            timerLabel.text = timerLabel.text! + "\nDONE!!!"
-            let aSelector : Selector = #selector(TimerViewController.doneBlinkLabel)
-            doneBlinkerTimer = NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: aSelector, userInfo: nil, repeats:true)
+            // create a sound ID, in this case its the tweet sound
+            let systemSoundID: SystemSoundID = 1104
+            
+            // to play sound
+            
+            
+            AudioServicesPlaySystemSound (systemSoundID)
+            let timerDoneAlert = UIAlertController(title: "Go check on your dessert!", message:"hurrrrryyyyyy", preferredStyle: .Alert)
+            
+            let doneAction = UIAlertAction(title:"Done", style:.Default) {(action) in };
+            timerDoneAlert.addAction(doneAction)
+            self.presentViewController(timerDoneAlert, animated: true) {}
+//            AudioServicesPlayAlertSound(kSystemSoundID_Vibrate)
+            timerPicker.userInteractionEnabled = true
+            
+            
+
+            
         }
     
     }
     
     
     
-    // NOTE: don't really like this blinking maybe add sound effect instead?
-    func doneBlinkLabel() {
-        if(blinkStatus){
-            timerLabel.textColor = UIColor.clearColor()
-            blinkStatus = false
-        } else {
-            timerLabel.textColor = UIColor.blackColor()
-            blinkStatus = true
-        }
-    }
+
     
     private func formatTime() -> String {
         let strHours = String(format: "%02d", hours)
@@ -115,6 +120,7 @@ class TimerViewController: UIViewController{
     }
     
     func updateLabel(datePicker: UIDatePicker) {
+        playButton.enabled = true
         elapsedTime = timerPicker.countDownDuration;
         let interval = Int(elapsedTime)
         hours = interval / 3600
@@ -135,7 +141,7 @@ class TimerViewController: UIViewController{
         let aSelector : Selector = #selector(TimerViewController.updateLabel)
         timerPicker.addTarget(self, action: aSelector, forControlEvents: UIControlEvents.ValueChanged)
         
-        startingTime = timerPicker.countDownDuration
+//        startingTime = timerPicker.countDownDuration //TODO: PUT BACK
         
         elapsedTime = startingTime;
         let interval = Int(elapsedTime)
