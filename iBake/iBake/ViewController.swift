@@ -17,6 +17,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     @IBOutlet weak var SearchBar: UISearchBar!
     
     var tableData = searchRecipe("dessert")["Results"]
+    var initialData = []
+    var keyword = ""
     
     let searchController = UISearchController(searchResultsController: nil)
     
@@ -33,20 +35,35 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         // 1. retrieve recipe
         // 2. parse recipe --> get ingredients + get instructions
         
-        // end any instance of the search controller
-        searchController.active = false
-        
-        let cellSelected = tableView.cellForRowAtIndexPath(indexPath) as! RecipeCell
-        let recipeDictionary = getRecipe(cellSelected.RecipeID);
-        
-        let recipeStepController = self.storyboard!.instantiateViewControllerWithIdentifier("recipeStep") as! StepController
-        recipeStepController.recipeDictionary = recipeDictionary
-        recipeStepController.recipeName = cellSelected.Title.text
-        self.presentViewController(recipeStepController, animated: true, completion: nil)
+        // if it's the load more button
+        if (indexPath.row == (tableData?.count)!) {
+            page = String(Int(page)! + 1)
+            if (searchController.active) {
+                let newRecipes = searchRecipe("dessert \(keyword)")["Results"]
+                let newData = [] + (tableData as! Array) + (newRecipes as! Array)
+                tableData = newData
+            } else {
+                let newRecipes = searchRecipe("Dessert")["Results"]
+                let newData = [] + (tableData as! Array) + (newRecipes as! Array)
+                tableData = newData
+            }
+            RecipesList.reloadData()
+        } else {
+            // end any instance of the search controller
+            searchController.active = false
+            
+            let cellSelected = tableView.cellForRowAtIndexPath(indexPath) as! RecipeCell
+            let recipeDictionary = getRecipe(cellSelected.RecipeID);
+            
+            let recipeStepController = self.storyboard!.instantiateViewControllerWithIdentifier("recipeStep") as! StepController
+            recipeStepController.recipeDictionary = recipeDictionary
+            recipeStepController.recipeName = cellSelected.Title.text
+            self.presentViewController(recipeStepController, animated: true, completion: nil)
+        }
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return (tableData?.count)!
+        return (tableData?.count)! + 1
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -57,6 +74,13 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         let recipeIdentifier = "recipe"
         
         let cell = tableView.dequeueReusableCellWithIdentifier(recipeIdentifier) as! RecipeCell
+        
+        if (indexPath.row == (tableData?.count)!) {
+            cell.Title.text = "Want to load more recipes?"
+            cell.PrepTime.text = "Click here!"
+            cell.RecipeImage?.image = UIImage(contentsOfFile: "pusheen_letsbake.jpg")
+            return cell
+        }
         
         //Configuring the cell
         let cellData = tableData![indexPath.row] as! NSDictionary
@@ -95,11 +119,19 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     // SearchBarDelegate
     func searchBarCancelButtonClicked(searchBar: UISearchBar) {
         print("cancel button called")
+        if (keyword != "") {
+            page = "1"
+            keyword = ""
+            tableData = initialData
+            RecipesList.reloadData()
+        }
     }
     
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
         print("search button called")
-        tableData = searchRecipe("dessert \(searchBar.text!)")["Results"]
+        page = "1"
+        keyword = searchBar.text!
+        tableData = searchRecipe("dessert \(keyword)")["Results"]
         RecipesList.reloadData()
     }
     
@@ -109,10 +141,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         self.RecipesList.delegate = self
         self.RecipesList.dataSource = self
         searchController.searchBar.delegate = self
-        //searchController.searchResultsUpdater = self
         searchController.dimsBackgroundDuringPresentation = false
         definesPresentationContext = true
         RecipesList.tableHeaderView = searchController.searchBar
+        initialData = tableData as! NSArray
     }
 
     override func didReceiveMemoryWarning() {
