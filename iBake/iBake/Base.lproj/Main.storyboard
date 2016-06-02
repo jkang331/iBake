@@ -359,6 +359,72 @@
             </objects>
             <point key="canvasLocation" x="1105" y="484"/>
         </scene>
+        <!--Web View Controller-->
+        <scene sceneID="Tcw-xv-ft9">
+            <objects>
+                <viewController storyboardIdentifier="web" useStoryboardIdentifierAsRestorationIdentifier="YES" id="QaP-7N-AhH" customClass="WebViewController" customModule="iBake" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="qSa-iH-i4P"/>
+                        <viewControllerLayoutGuide type="bottom" id="hah-3L-zay"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Vl2-Tn-JNU">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="t1a-VJ-J3p">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="64"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="64" id="tXL-NF-y7J"/>
+                                </constraints>
+                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <color key="barTintColor" red="1" green="0.64705882349999999" blue="0.64705882349999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <textAttributes key="titleTextAttributes">
+                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </textAttributes>
+                                <items>
+                                    <navigationItem title="Recipe Name" id="R2h-TF-laN">
+                                        <barButtonItem key="leftBarButtonItem" title="Previous" id="RMm-Fg-33b">
+                                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <connections>
+                                                <action selector="donePressed:" destination="QaP-7N-AhH" id="33u-uR-3Tl"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" title="Return Home" id="siU-9w-Ofs">
+                                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <connections>
+                                                <action selector="returnHome:" destination="QaP-7N-AhH" id="WvI-sx-FUn"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1r6-bz-bi2">
+                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="deviceRGB"/>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="t1a-VJ-J3p" firstAttribute="leading" secondItem="Vl2-Tn-JNU" secondAttribute="leadingMargin" constant="-20" id="5E6-Gq-Bv2"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="t1a-VJ-J3p" secondAttribute="trailing" constant="-20" id="5fw-XS-tuC"/>
+                            <constraint firstItem="t1a-VJ-J3p" firstAttribute="centerX" secondItem="Vl2-Tn-JNU" secondAttribute="centerX" id="7EJ-wK-g32"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="1r6-bz-bi2" secondAttribute="trailing" constant="-20" id="Bzs-8u-NnN"/>
+                            <constraint firstItem="1r6-bz-bi2" firstAttribute="leading" secondItem="Vl2-Tn-JNU" secondAttribute="leadingMargin" constant="-20" id="fbO-jQ-58f"/>
+                            <constraint firstItem="hah-3L-zay" firstAttribute="top" secondItem="1r6-bz-bi2" secondAttribute="bottom" id="grU-zq-WQq"/>
+                            <constraint firstItem="t1a-VJ-J3p" firstAttribute="top" secondItem="Vl2-Tn-JNU" secondAttribute="top" id="iFE-lD-BAR"/>
+                            <constraint firstItem="1r6-bz-bi2" firstAttribute="top" secondItem="t1a-VJ-J3p" secondAttribute="bottom" id="lvA-cW-no9"/>
+                            <constraint firstItem="1r6-bz-bi2" firstAttribute="width" secondItem="Vl2-Tn-JNU" secondAttribute="width" id="pCq-dJ-gie"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="Navbar" destination="t1a-VJ-J3p" id="7Y3-Wn-q1U"/>
+                        <outlet property="webView" destination="1r6-bz-bi2" id="QQK-LG-YqV"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Q7n-BQ-g72" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1092" y="1256"/>
+        </scene>
         <!--Timer View Controller-->
         <scene sceneID="VzL-e9-gNt">
             <objects>

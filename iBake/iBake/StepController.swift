@@ -35,16 +35,29 @@ class StepController: UIViewController{
     }
     
     @IBAction func nextStepSelected(sender: AnyObject) {
-        let nextStepViewController = self.storyboard!.instantiateViewControllerWithIdentifier("recipeStep") as! StepController
-        nextStepViewController.recipeDictionary = recipeDictionary
-        nextStepViewController.recipeName = recipeName
-        nextStepViewController.ingredientsList = ingredientsList
-        nextStepViewController.instructionsArray = instructionsArray
-        nextStepViewController.counter = counter + 1
-        nextStepViewController.displayedIngredients = displayedIngredients
         
-        nextStepViewController.modalTransitionStyle = UIModalTransitionStyle.PartialCurl
-        self.presentViewController(nextStepViewController, animated: true, completion: nil)
+        if(String(recipeDictionary!["Instructions"]!).containsString("www.") || String(recipeDictionary!["Instructions"]!).containsString("http:") ) {
+            let webViewController = self.storyboard!.instantiateViewControllerWithIdentifier("web") as! WebViewController
+            webViewController.recipeName = recipeName
+            webViewController.URL = String(recipeDictionary!["Instructions"]!).stringByReplacingOccurrencesOfString("Instructions are at ", withString: "")
+            webViewController.modalTransitionStyle = UIModalTransitionStyle.PartialCurl
+            self.presentViewController(webViewController, animated: true, completion: nil)
+            
+            
+        } else{
+            let nextStepViewController = self.storyboard!.instantiateViewControllerWithIdentifier("recipeStep") as! StepController
+            nextStepViewController.recipeDictionary = recipeDictionary
+            nextStepViewController.recipeName = recipeName
+            nextStepViewController.ingredientsList = ingredientsList
+            nextStepViewController.instructionsArray = instructionsArray
+            nextStepViewController.counter = counter + 1
+            nextStepViewController.displayedIngredients = displayedIngredients
+            
+            nextStepViewController.modalTransitionStyle = UIModalTransitionStyle.PartialCurl
+            self.presentViewController(nextStepViewController, animated: true, completion: nil)
+        }
+        
+        
         
     }
     
