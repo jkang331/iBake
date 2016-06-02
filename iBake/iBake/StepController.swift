@@ -28,23 +28,6 @@ class StepController: UIViewController{
     
     
     @IBAction func previousStepSelected(sender: AnyObject) {
-//        let previousStepViewController = self.storyboard!.instantiateViewControllerWithIdentifier("recipeStep") as! StepController
-//        
-//        previousStepViewController.recipeDictionary = recipeDictionary
-//        previousStepViewController.recipeName = recipeName
-//        previousStepViewController.instructionsArray = instructionsArray
-//        previousStepViewController.counter = counter - 1
-//        previousStepViewController.ingredientsList = ingredientsList
-//        previousStepViewController.displayedIngredients = displayedIngredients
-//        
-//        if (previousStepViewController.counter == 0) {
-//            previousStepViewController.displayedIngredients = false
-//            
-//        }
-//        previousStepViewController.modalTransitionStyle = UIModalTransitionStyle.FlipHorizontal
-//        self.presentViewController(previousStepViewController, animated: true, completion: nil)
-
-        
         
         self.dismissViewControllerAnimated(true, completion: nil)
         
