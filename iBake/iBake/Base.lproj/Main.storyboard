@@ -61,15 +61,28 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eAN-Py-a1H">
+                                                    <rect key="frame" x="572" y="28" width="20" height="20"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="20" id="GCQ-4Q-7OV"/>
+                                                        <constraint firstAttribute="height" constant="20" id="KU1-vM-j3T"/>
+                                                    </constraints>
+                                                    <state key="normal" image="heart_outline.png"/>
+                                                    <connections>
+                                                        <action selector="favorite:" destination="3ZB-Mj-UVJ" eventType="touchUpInside" id="wNA-45-Nb3"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="gBl-Kp-HG3" firstAttribute="leading" secondItem="oD1-lv-Wgx" secondAttribute="trailing" constant="8" symbolic="YES" id="3g5-dt-s5I"/>
                                                 <constraint firstItem="JNK-Qk-aha" firstAttribute="top" secondItem="gBl-Kp-HG3" secondAttribute="bottom" constant="3" id="7lr-bZ-wQ6"/>
                                                 <constraint firstItem="oD1-lv-Wgx" firstAttribute="leading" secondItem="Ybr-up-M8S" secondAttribute="leadingMargin" constant="10" id="DGo-NP-a2g"/>
+                                                <constraint firstItem="eAN-Py-a1H" firstAttribute="centerY" secondItem="oD1-lv-Wgx" secondAttribute="centerY" id="Lmc-KM-Ita"/>
                                                 <constraint firstItem="gBl-Kp-HG3" firstAttribute="top" secondItem="Ybr-up-M8S" secondAttribute="topMargin" constant="2" id="Rav-Rm-TCL"/>
                                                 <constraint firstItem="gBl-Kp-HG3" firstAttribute="leading" secondItem="JNK-Qk-aha" secondAttribute="leading" id="XWz-pf-Xrs"/>
                                                 <constraint firstItem="gBl-Kp-HG3" firstAttribute="leading" secondItem="oD1-lv-Wgx" secondAttribute="trailing" constant="8" id="fsv-wQ-Sjh"/>
                                                 <constraint firstItem="oD1-lv-Wgx" firstAttribute="bottom" secondItem="Ybr-up-M8S" secondAttribute="bottomMargin" id="kFh-YC-hnR"/>
+                                                <constraint firstItem="eAN-Py-a1H" firstAttribute="trailing" secondItem="JNK-Qk-aha" secondAttribute="trailing" id="mNV-sN-TrU"/>
                                                 <constraint firstItem="gBl-Kp-HG3" firstAttribute="trailing" secondItem="Ybr-up-M8S" secondAttribute="trailingMargin" id="ok4-mk-f3P"/>
                                                 <constraint firstItem="gBl-Kp-HG3" firstAttribute="trailing" secondItem="JNK-Qk-aha" secondAttribute="trailing" id="tF5-Lr-poL"/>
                                                 <constraint firstItem="oD1-lv-Wgx" firstAttribute="top" secondItem="Ybr-up-M8S" secondAttribute="topMargin" id="vsW-6j-nlN"/>
@@ -80,6 +93,7 @@
                                             <outlet property="PrepTime" destination="JNK-Qk-aha" id="HnO-P9-LRa"/>
                                             <outlet property="RecipeImage" destination="oD1-lv-Wgx" id="3wi-kc-Ktp"/>
                                             <outlet property="Title" destination="gBl-Kp-HG3" id="pZV-Q5-Zx0"/>
+                                            <outlet property="favoritedRecipe" destination="eAN-Py-a1H" id="Xeq-cV-22h"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -551,4 +565,7 @@
             <point key="canvasLocation" x="388" y="1256"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="heart_outline.png" width="40" height="40"/>
+    </resources>
 </document>
