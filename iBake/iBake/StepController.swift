@@ -135,7 +135,7 @@ class StepController: UIViewController{
             }
             
             // Will display total time
-            if(!String(recipeDictionary!["TotalMinutes"]!).containsString("0")){
+            if(!String(recipeDictionary!["TotalMinutes"]!).containsString("0") && !String(recipeDictionary!["TotalMinutes"]!).containsString("<null>")){
                 stepLabel.text = "Recipe Time: \(recipeDictionary!["TotalMinutes"]!) minutes\n\(ingredientsList!)"
             }else {
                 stepLabel.text = "\(ingredientsList!)"
