@@ -101,7 +101,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         cell.RecipeID = cellData["RecipeID"] as? Int
         cell.Title.text = cellData["Title"] as? String
         cell.PrepTime.text = numStars + " stars"
-        cell.RecipeImage?.image = UIImage(data: imgdata!)
+        if imgdata != nil {
+            cell.RecipeImage?.image = UIImage(data: imgdata!)
+        }
+        
         
         //Adding a Separator Line to the Bottom
         let separatorLineView = UIView.init(frame: CGRectMake(0, cell.frame.size.height - 0.5 , self.view.frame.width, 1))
