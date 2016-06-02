@@ -14,7 +14,7 @@ let searchAPIAddress = "http://api.bigoven.com/recipes?"
 let recipeAPIAddress = "http://api.bigoven.com/recipe/" // needs {recipe_id}?api_key={apiKey}
 
 // API search variables
-var pageLimit = "1"
+var page = "1"
 var resultsPerPage = "30"
 var searchMode: Bool = true // false: By title, true: Any match
 var searchParameter: String = "&title_kw="
@@ -39,7 +39,8 @@ func searchRecipe(keyWord: String!) -> NSDictionary {
     }
     
     // construct URL object to make HTTP request to API server
-    let apiURL: NSURL? = NSURL(string: searchAPIAddress + "api_key=" + apiKey + searchParameter + searchWord + "&pg=" + pageLimit + "&rpp=" + resultsPerPage)
+    print(searchWord)
+    let apiURL: NSURL? = NSURL(string: searchAPIAddress + "api_key=" + apiKey + searchParameter + searchWord + "&pg=" + page + "&rpp=" + resultsPerPage)
     print(apiURL)
     let request = NSMutableURLRequest(URL: apiURL!)
     let session = NSURLSession.sharedSession()

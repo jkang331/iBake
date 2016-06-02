@@ -29,7 +29,7 @@
                                         <string>Title</string>
                                     </scopeButtonTitles>
                                     <connections>
-                                        <outlet property="delegate" destination="BYZ-38-t0r" id="41v-0F-S8t"/>
+                                        <outlet property="delegate" destination="BYZ-38-t0r" id="i7I-GY-IWp"/>
                                     </connections>
                                 </searchBar>
                                 <prototypes>
@@ -117,7 +117,7 @@
                     </view>
                     <connections>
                         <outlet property="RecipesList" destination="2hh-RD-O9A" id="LwC-mU-AXR"/>
-                        <outlet property="Search" destination="AFE-FE-lC2" id="HjA-uT-2ql"/>
+                        <outlet property="SearchBar" destination="AFE-FE-lC2" id="eXk-CP-84S"/>
                         <outlet property="searchDisplayController" destination="42N-ni-qMn" id="tvd-HG-l1O"/>
                     </connections>
                 </viewController>
