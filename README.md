@@ -5,8 +5,8 @@ INFO 498B - Final Project
 
 ###Core User Stories
 * `DONE` As an amateur baker, I want to be able to easily retrieve recipes so that I can spend more time baking and less time picking a recipe.
-* `TEST` As a baker, I want to be able to search for recipes using keywords so I can quickly find a recipe to make.
-* `FIX EDGE CASES` As a baker, I want to be able to see well-formatted step-by-step instructions so that I don’t have to struggle to find the next step whenever I lose my place in the recipe.
+* `WOULD BE NICE IF IT AUTO-UPDATED LIST` As a baker, I want to be able to search for recipes using keywords so I can quickly find a recipe to make.
+* `DONE` As a baker, I want to be able to see well-formatted step-by-step instructions so that I don’t have to struggle to find the next step whenever I lose my place in the recipe.
 * `DONE - although an alarm sound would be nice` As a busy user, I want to be able to set an alarm informing me when my baking is complete or almost done so that I may leave the room to do other things while waiting.
 
 
