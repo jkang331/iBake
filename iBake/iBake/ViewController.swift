@@ -110,10 +110,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             cell.RecipeImage?.image = UIImage(data: imgdata!)
         }
         
-        
+        var favoritesArray = [String]()
         // Checking if the recipe has been favorited by the user
-        if (NSUserDefaults.standardUserDefaults().objectForKey("favoritesArray") != nil) {
-            let favoritesArray = NSUserDefaults.standardUserDefaults().objectForKey("favoritesArray")! as! [String]
+        if (NSUserDefaults.standardUserDefaults().boolForKey("setFavorites") == true) {
+            favoritesArray = NSUserDefaults.standardUserDefaults().objectForKey("favoritesArray") as! [String]
             if (favoritesArray.contains(cell.Title.text!)){
                 let heartfull_img = UIImage(named: "heart_full.png")
                 cell.favoritedRecipe.setImage(heartfull_img, forState: UIControlState.Normal)

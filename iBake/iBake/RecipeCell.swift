@@ -25,11 +25,12 @@ class RecipeCell : UITableViewCell {
             var favoritesArray = [String]()
             
             
-            if (NSUserDefaults.standardUserDefaults().objectForKey("favoritesArray") != nil) {
+            if (NSUserDefaults.standardUserDefaults().boolForKey("setFavorites") == true) {
                 favoritesArray = NSUserDefaults.standardUserDefaults().objectForKey("favoritesArray")! as! [String]
             }
             
             favoritesArray.append(Title.text!)
+            NSUserDefaults.standardUserDefaults().setBool(true, forKey: "setFavorites")
             NSUserDefaults.standardUserDefaults().setObject(favoritesArray, forKey: "favoritesArray")
             NSUserDefaults.standardUserDefaults().synchronize()
             // add to favorites list
@@ -40,11 +41,14 @@ class RecipeCell : UITableViewCell {
             //remove from favorites list
             var favoritesArray = [String]()
             
-            if (NSUserDefaults.standardUserDefaults().objectForKey("favoritesArray") != nil) {
+            if (NSUserDefaults.standardUserDefaults().boolForKey("setFavorites") == true) {
                 favoritesArray = NSUserDefaults.standardUserDefaults().objectForKey("favoritesArray")! as! [String]
             }
             
             favoritesArray = favoritesArray.filter{$0 == Title.text!}
+            if (favoritesArray.count == 0){
+                NSUserDefaults.standardUserDefaults().setBool(false, forKey: "setFavorites")
+            }
             NSUserDefaults.standardUserDefaults().setObject(favoritesArray, forKey: "favoritesArray")
             NSUserDefaults.standardUserDefaults().synchronize()
             
