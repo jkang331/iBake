@@ -111,6 +111,16 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         }
         
         
+        // Checking if the recipe has been favorited by the user
+        if (NSUserDefaults.standardUserDefaults().objectForKey("favoritesArray") != nil) {
+            let favoritesArray = NSUserDefaults.standardUserDefaults().objectForKey("favoritesArray")! as! [Int]
+            if (favoritesArray.contains(cell.RecipeID!)){
+                let heartfull_img = UIImage(named: "heart_full.png")
+                cell.favoritedRecipe.setImage(heartfull_img, forState: UIControlState.Normal)
+            }
+        }
+        
+        
         //Adding a Separator Line to the Bottom
         let separatorLineView = UIView.init(frame: CGRectMake(0, cell.frame.size.height - 0.5 , self.view.frame.width, 1))
         separatorLineView.backgroundColor = UIColor.lightGrayColor()

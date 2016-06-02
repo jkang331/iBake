@@ -14,4 +14,41 @@ class RecipeCell : UITableViewCell {
     @IBOutlet weak var PrepTime: UILabel!
     @IBOutlet weak var RecipeImage: UIImageView!
     var RecipeID: Int!
+    @IBOutlet weak var favoritedRecipe: UIButton!
+    
+    
+    @IBAction func favorite(sender: AnyObject) {
+        let heartfull_img = UIImage(named: "heart_full.png")
+        if(favoritedRecipe.currentImage != heartfull_img) { // hasn't been favorited
+            favoritedRecipe.setImage(heartfull_img, forState: UIControlState.Normal)
+            
+            var favoritesArray = [Int]()
+            
+            
+            if (NSUserDefaults.standardUserDefaults().objectForKey("favoritesArray") != nil) {
+                favoritesArray = NSUserDefaults.standardUserDefaults().objectForKey("favoritesArray")! as! [Int]
+            }
+            
+            favoritesArray.append(RecipeID!)
+            NSUserDefaults.standardUserDefaults().setObject(favoritesArray, forKey: "favoritesArray")
+//            NSUserDefaults.standardUserDefaults().synchronize()
+            // add to favorites list
+        } else {
+            let heartoutline_img = UIImage(named: "heart_outline.png")
+            favoritedRecipe.setImage(heartoutline_img, forState: UIControlState.Normal)
+            
+            //remove from favorites list
+            var favoritesArray = [Int]()
+            
+            if (NSUserDefaults.standardUserDefaults().stringForKey("favoritesArray") != nil) {
+                favoritesArray = NSUserDefaults.standardUserDefaults().objectForKey("favoritesArray")! as! [Int]
+            }
+            
+            favoritesArray = favoritesArray.filter{$0 == RecipeID!}
+            NSUserDefaults.standardUserDefaults().setObject(favoritesArray, forKey: "favoritesArray")
+//            NSUserDefaults.standardUserDefaults().synchronize()
+            
+        }
+        
+    }
 }
