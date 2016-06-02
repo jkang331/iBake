@@ -7,7 +7,7 @@ INFO 498B - Final Project
 * `DONE` As an amateur baker, I want to be able to easily retrieve recipes so that I can spend more time baking and less time picking a recipe.
 * `DONE - note: need to click enter/search because makes call to API not just recipes displaying in app` As a baker, I want to be able to search for recipes using keywords so I can quickly find a recipe to make.
 * `DONE` As a baker, I want to be able to see well-formatted step-by-step instructions so that I don’t have to struggle to find the next step whenever I lose my place in the recipe.
-* `DONE - although an alarm sound would be nice` As a busy user, I want to be able to set an alarm informing me when my baking is complete or almost done so that I may leave the room to do other things while waiting.
+* `DONE - with a bell sound when timer finishes` As a busy user, I want to be able to set an alarm informing me when my baking is complete or almost done so that I may leave the room to do other things while waiting.
 
 
 ###Optional User Stories
