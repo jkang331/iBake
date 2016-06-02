@@ -11,7 +11,6 @@ import Foundation
 
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, UISearchDisplayDelegate{
 
-//, UISearchBarDelegate, UISearchDisplayDelegate {
 
     @IBOutlet weak var RecipesList: UITableView!
     @IBOutlet weak var SearchBar: UISearchBar!
@@ -86,7 +85,13 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         let cellData = tableData?.objectAtIndex(indexPath.row) as! NSDictionary
         
         let imgurl = NSURL(string: (cellData["ImageURL"] as? String)!)
-        let imgdata = NSData(contentsOfURL: imgurl!)
+        
+        var imgdata : NSData?;
+        if(imgurl != nil){
+            imgdata = NSData(contentsOfURL: imgurl!)
+        }
+        
+        
         
         // Code to get totalminutes shown from each recipe, takes WAY too long
         //let recipeID = cellData["RecipeID"] as? Int
