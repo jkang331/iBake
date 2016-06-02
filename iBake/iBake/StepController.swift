@@ -28,23 +28,6 @@ class StepController: UIViewController{
     
     
     @IBAction func previousStepSelected(sender: AnyObject) {
-//        let previousStepViewController = self.storyboard!.instantiateViewControllerWithIdentifier("recipeStep") as! StepController
-//        
-//        previousStepViewController.recipeDictionary = recipeDictionary
-//        previousStepViewController.recipeName = recipeName
-//        previousStepViewController.instructionsArray = instructionsArray
-//        previousStepViewController.counter = counter - 1
-//        previousStepViewController.ingredientsList = ingredientsList
-//        previousStepViewController.displayedIngredients = displayedIngredients
-//        
-//        if (previousStepViewController.counter == 0) {
-//            previousStepViewController.displayedIngredients = false
-//            
-//        }
-//        previousStepViewController.modalTransitionStyle = UIModalTransitionStyle.FlipHorizontal
-//        self.presentViewController(previousStepViewController, animated: true, completion: nil)
-
-        
         
         self.dismissViewControllerAnimated(true, completion: nil)
         
@@ -52,16 +35,29 @@ class StepController: UIViewController{
     }
     
     @IBAction func nextStepSelected(sender: AnyObject) {
-        let nextStepViewController = self.storyboard!.instantiateViewControllerWithIdentifier("recipeStep") as! StepController
-        nextStepViewController.recipeDictionary = recipeDictionary
-        nextStepViewController.recipeName = recipeName
-        nextStepViewController.ingredientsList = ingredientsList
-        nextStepViewController.instructionsArray = instructionsArray
-        nextStepViewController.counter = counter + 1
-        nextStepViewController.displayedIngredients = displayedIngredients
         
-        nextStepViewController.modalTransitionStyle = UIModalTransitionStyle.PartialCurl
-        self.presentViewController(nextStepViewController, animated: true, completion: nil)
+        if(String(recipeDictionary!["Instructions"]!).containsString("www.") || String(recipeDictionary!["Instructions"]!).containsString("http:") ) {
+            let webViewController = self.storyboard!.instantiateViewControllerWithIdentifier("web") as! WebViewController
+            webViewController.recipeName = recipeName
+            webViewController.URL = String(recipeDictionary!["Instructions"]!).stringByReplacingOccurrencesOfString("Instructions are at ", withString: "")
+            webViewController.modalTransitionStyle = UIModalTransitionStyle.PartialCurl
+            self.presentViewController(webViewController, animated: true, completion: nil)
+            
+            
+        } else{
+            let nextStepViewController = self.storyboard!.instantiateViewControllerWithIdentifier("recipeStep") as! StepController
+            nextStepViewController.recipeDictionary = recipeDictionary
+            nextStepViewController.recipeName = recipeName
+            nextStepViewController.ingredientsList = ingredientsList
+            nextStepViewController.instructionsArray = instructionsArray
+            nextStepViewController.counter = counter + 1
+            nextStepViewController.displayedIngredients = displayedIngredients
+            
+            nextStepViewController.modalTransitionStyle = UIModalTransitionStyle.PartialCurl
+            self.presentViewController(nextStepViewController, animated: true, completion: nil)
+        }
+        
+        
         
     }
     
@@ -135,7 +131,7 @@ class StepController: UIViewController{
             }
             
             // Will display total time
-            if(!String(recipeDictionary!["TotalMinutes"]!).containsString("0")){
+            if(!String(recipeDictionary!["TotalMinutes"]!).containsString("0") && !String(recipeDictionary!["TotalMinutes"]!).containsString("<null>")){
                 stepLabel.text = "Recipe Time: \(recipeDictionary!["TotalMinutes"]!) minutes\n\(ingredientsList!)"
             }else {
                 stepLabel.text = "\(ingredientsList!)"
@@ -161,10 +157,17 @@ class StepController: UIViewController{
                 if (instructionsArray == nil || instructionsArray!.count == 0) {
                     // parse instructions and fill array
                     
-                    //TODO: check if instructions contain ":" (random edge case on chocolate eclair dessert -_-)
-                    
                     let instructions = String(recipeDictionary!["Instructions"]!)
+                    
+                    
                     instructionsArray = instructions.characters.split(".").map(String.init)
+                    
+                    // Filter out non-instruction strings
+                    instructionsArray = instructionsArray!.filter{!$0.containsString("Directions")}
+                    instructionsArray = instructionsArray!.filter{!($0.containsString("\r") && $0.characters.count < 10)}
+                    instructionsArray = instructionsArray!.filter{!($0.containsString(": \r\n"))}
+                    instructionsArray = instructionsArray!.filter{$0.characters.count > 5}
+                    
                 }
             
                 stepLabel.text = instructionsArray![counter - 1] + "."
@@ -192,7 +195,9 @@ class StepController: UIViewController{
             ViewIngredientsButton.enabled = false
         }
         
-        if(stepTitle.text == "Ingredients" || !(stepLabel.text!.containsString("minute") || stepLabel.text!.containsString("hour"))) {
+        // Add to the following condition if you want to only allow steps that need the timer to be able to set timer 
+        //     || !(stepLabel.text!.containsString("minute") || stepLabel.text!.containsString("hour"))
+        if(stepTitle.text == "Ingredients" ) {
             setTimerButton.enabled = false
         }
         

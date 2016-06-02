@@ -11,7 +11,6 @@ import Foundation
 
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, UISearchDisplayDelegate{
 
-//, UISearchBarDelegate, UISearchDisplayDelegate {
 
     @IBOutlet weak var RecipesList: UITableView!
     @IBOutlet weak var SearchBar: UISearchBar!
@@ -83,10 +82,16 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         }
         
         //Configuring the cell
-        let cellData = tableData![indexPath.row] as! NSDictionary
+        let cellData = tableData?.objectAtIndex(indexPath.row) as! NSDictionary
         
         let imgurl = NSURL(string: (cellData["ImageURL"] as? String)!)
-        let imgdata = NSData(contentsOfURL: imgurl!)
+        
+        var imgdata : NSData?;
+        if(imgurl != nil){
+            imgdata = NSData(contentsOfURL: imgurl!)
+        }
+        
+        
         
         // Code to get totalminutes shown from each recipe, takes WAY too long
         //let recipeID = cellData["RecipeID"] as? Int
@@ -101,7 +106,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         cell.RecipeID = cellData["RecipeID"] as? Int
         cell.Title.text = cellData["Title"] as? String
         cell.PrepTime.text = numStars + " stars"
-        cell.RecipeImage?.image = UIImage(data: imgdata!)
+        if imgdata != nil {
+            cell.RecipeImage?.image = UIImage(data: imgdata!)
+        }
+        
         
         //Adding a Separator Line to the Bottom
         let separatorLineView = UIView.init(frame: CGRectMake(0, cell.frame.size.height - 0.5 , self.view.frame.width, 1))

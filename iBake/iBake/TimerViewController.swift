@@ -85,19 +85,53 @@ class TimerViewController: UIViewController{
         } else {
             timer.invalidate()
             // create a sound ID, in this case its the tweet sound
-            let systemSoundID: SystemSoundID = 1104
+//            let systemSoundID: SystemSoundID = 1104
             
             // to play sound
             
             
-            AudioServicesPlaySystemSound (systemSoundID)
+//            AudioServicesPlaySystemSound (systemSoundID)
+            let alertSound = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("ding", ofType: "mp3")!)
+            
+            do{
+                audioPlayer = try AVAudioPlayer.init(contentsOfURL: alertSound)
+            } catch{
+                print(error)
+            }
+            
+            
+            
+            audioPlayer.numberOfLoops = -1;
+            audioPlayer.prepareToPlay()
+            audioPlayer.play()
             let timerDoneAlert = UIAlertController(title: "Go check on your dessert!", message:"hurrrrryyyyyy", preferredStyle: .Alert)
             
-            let doneAction = UIAlertAction(title:"Done", style:.Default) {(action) in };
+            let doneAction = UIAlertAction(title:"Done", style:.Default) {(action) in self.audioPlayer.stop()};
             timerDoneAlert.addAction(doneAction)
             self.presentViewController(timerDoneAlert, animated: true) {}
 //            AudioServicesPlayAlertSound(kSystemSoundID_Vibrate)
             timerPicker.userInteractionEnabled = true
+            
+            
+            
+//            
+//            NSURL *url = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/foo.mp3", [[NSBundle mainBundle] resourcePath]]];
+//            
+//            NSError *error;
+//            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Title" message:@"message" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+//            audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:&error];
+//            audioPlayer.numberOfLoops = 1;
+//            [audioPlayer play];
+//            [alert show];
+//        }
+//        - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+//            if (buttonIndex==0) {
+//                [audioPlayer stop];
+//                
+//            }
+//            
+//        }
+//        
             
             
 
@@ -141,7 +175,7 @@ class TimerViewController: UIViewController{
         let aSelector : Selector = #selector(TimerViewController.updateLabel)
         timerPicker.addTarget(self, action: aSelector, forControlEvents: UIControlEvents.ValueChanged)
         
-//        startingTime = timerPicker.countDownDuration //TODO: PUT BACK
+//        startingTime = timerPicker.countDownDuration
         
         elapsedTime = startingTime;
         let interval = Int(elapsedTime)
@@ -152,6 +186,7 @@ class TimerViewController: UIViewController{
         timerLabel.text = formatTime()
         
     }
+    
     
     
     override func didReceiveMemoryWarning() {
