@@ -40,11 +40,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iBake/TimerViewController.swift"
-            timestampString = "486471223.875018"
+            timestampString = "486561076.620226"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "122"
-            endingLineNumber = "122"
+            startingLineNumber = "156"
+            endingLineNumber = "156"
             landmarkName = "updateLabel(_:)"
             landmarkType = "5">
          </BreakpointContent>
