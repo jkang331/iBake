@@ -50,7 +50,6 @@ class TimerViewController: UIViewController{
         pauseButton.enabled = false
         playButton.enabled = true
         timerPicker.userInteractionEnabled = true
-//        doneBlinkerTimer.invalidate()
     }
     
     @IBAction func playPressed(sender: AnyObject) {
@@ -84,13 +83,7 @@ class TimerViewController: UIViewController{
             
         } else {
             timer.invalidate()
-            // create a sound ID, in this case its the tweet sound
-//            let systemSoundID: SystemSoundID = 1104
             
-            // to play sound
-            
-            
-//            AudioServicesPlaySystemSound (systemSoundID)
             let alertSound = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("ding", ofType: "mp3")!)
             
             do{
@@ -109,32 +102,8 @@ class TimerViewController: UIViewController{
             let doneAction = UIAlertAction(title:"Done", style:.Default) {(action) in self.audioPlayer.stop()};
             timerDoneAlert.addAction(doneAction)
             self.presentViewController(timerDoneAlert, animated: true) {}
-//            AudioServicesPlayAlertSound(kSystemSoundID_Vibrate)
             timerPicker.userInteractionEnabled = true
             
-            
-            
-//            
-//            NSURL *url = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/foo.mp3", [[NSBundle mainBundle] resourcePath]]];
-//            
-//            NSError *error;
-//            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Title" message:@"message" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
-//            audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:&error];
-//            audioPlayer.numberOfLoops = 1;
-//            [audioPlayer play];
-//            [alert show];
-//        }
-//        - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-//            if (buttonIndex==0) {
-//                [audioPlayer stop];
-//                
-//            }
-//            
-//        }
-//        
-            
-            
-
             
         }
     
