@@ -144,10 +144,17 @@ class StepController: UIViewController{
                 if (instructionsArray == nil || instructionsArray!.count == 0) {
                     // parse instructions and fill array
                     
-                    //TODO: check if instructions contain ":" (random edge case on chocolate eclair dessert -_-)
-                    
                     let instructions = String(recipeDictionary!["Instructions"]!)
+                    
+                    
                     instructionsArray = instructions.characters.split(".").map(String.init)
+                    
+                    // Filter out non-instruction strings
+                    instructionsArray = instructionsArray!.filter{!$0.containsString("Directions")}
+                    instructionsArray = instructionsArray!.filter{!($0.containsString("\r") && $0.characters.count < 10)}
+                    instructionsArray = instructionsArray!.filter{!($0.containsString(": \r\n"))}
+                    instructionsArray = instructionsArray!.filter{$0.characters.count > 5}
+                    
                 }
             
                 stepLabel.text = instructionsArray![counter - 1] + "."
@@ -175,7 +182,9 @@ class StepController: UIViewController{
             ViewIngredientsButton.enabled = false
         }
         
-        if(stepTitle.text == "Ingredients" || !(stepLabel.text!.containsString("minute") || stepLabel.text!.containsString("hour"))) {
+        // Add to the following condition if you want to only allow steps that need the timer to be able to set timer 
+        //     || !(stepLabel.text!.containsString("minute") || stepLabel.text!.containsString("hour"))
+        if(stepTitle.text == "Ingredients" ) {
             setTimerButton.enabled = false
         }
         
