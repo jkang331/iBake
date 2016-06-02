@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -106,14 +106,29 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="2hh-RD-O9A" secondAttribute="bottom" id="2WG-uv-PLQ"/>
+                            <constraint firstItem="ZuX-Wi-Ysb" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="AXh-cI-AXC"/>
                             <constraint firstItem="2hh-RD-O9A" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="44" id="Bqb-7v-Nky"/>
                             <constraint firstAttribute="trailingMargin" secondItem="2hh-RD-O9A" secondAttribute="trailing" constant="-20" id="DnE-C0-vH5"/>
+                            <constraint firstItem="ZuX-Wi-Ysb" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="-20" id="IIb-wa-PXh"/>
                             <constraint firstItem="ZuX-Wi-Ysb" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="ULv-hb-xGc"/>
+                            <constraint firstItem="2hh-RD-O9A" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="X5Z-bb-khQ"/>
                             <constraint firstItem="2hh-RD-O9A" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="fhM-aZ-aAn"/>
                             <constraint firstItem="2hh-RD-O9A" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="nnF-qs-ccj"/>
+                            <constraint firstItem="ZuX-Wi-Ysb" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="pfL-bT-zHH"/>
+                            <constraint firstItem="2hh-RD-O9A" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="q44-1h-2R8"/>
                             <constraint firstItem="ZuX-Wi-Ysb" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="-20" id="re5-Wa-gwH"/>
                             <constraint firstItem="ZuX-Wi-Ysb" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="wab-SQ-rqD"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="ULv-hb-xGc"/>
+                                <exclude reference="re5-Wa-gwH"/>
+                                <exclude reference="wab-SQ-rqD"/>
+                                <exclude reference="DnE-C0-vH5"/>
+                                <exclude reference="nnF-qs-ccj"/>
+                                <exclude reference="q44-1h-2R8"/>
+                            </mask>
+                        </variation>
                     </view>
                     <connections>
                         <outlet property="RecipesList" destination="2hh-RD-O9A" id="LwC-mU-AXR"/>
@@ -251,6 +266,8 @@
                                 <rect key="frame" x="20" y="118" width="560" height="357"/>
                                 <color key="backgroundColor" red="0.9882352941176471" green="0.94846443965517246" blue="0.93961080121703844" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
+                                    <constraint firstAttribute="height" constant="357" id="T60-Tj-nhE"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="357" id="cg2-FT-68V"/>
                                     <constraint firstAttribute="height" constant="121" id="hkO-Mf-Bn8"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
@@ -263,6 +280,7 @@
                                 </userDefinedRuntimeAttributes>
                                 <variation key="default">
                                     <mask key="constraints">
+                                        <exclude reference="T60-Tj-nhE"/>
                                         <exclude reference="hkO-Mf-Bn8"/>
                                     </mask>
                                 </variation>
@@ -320,6 +338,7 @@
                                 <exclude reference="d0m-sT-ZjO"/>
                                 <exclude reference="gvg-J6-cRC"/>
                                 <exclude reference="LSh-b6-UPZ"/>
+                                <exclude reference="B9f-cZ-iRK"/>
                                 <exclude reference="OGY-BD-NtH"/>
                                 <exclude reference="RcI-Yw-qVo"/>
                                 <exclude reference="kwx-XF-IcJ"/>

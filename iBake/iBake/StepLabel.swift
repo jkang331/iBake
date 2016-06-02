@@ -13,4 +13,11 @@ class StepLabel:UILabel {
         let inset = UIEdgeInsets(top:3.0, left:10.0, bottom:3.0, right:3.0)
         super.drawTextInRect(UIEdgeInsetsInsetRect(rect, inset))
     }
+    
+    override func updateConstraints() {
+        super.updateConstraints()
+        self.sizeToFit()
+    }
+    
+    
 }
