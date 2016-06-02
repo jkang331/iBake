@@ -83,7 +83,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         }
         
         //Configuring the cell
-        let cellData = tableData![indexPath.row] as! NSDictionary
+        let cellData = tableData?.objectAtIndex(indexPath.row) as! NSDictionary
         
         let imgurl = NSURL(string: (cellData["ImageURL"] as? String)!)
         let imgdata = NSData(contentsOfURL: imgurl!)
