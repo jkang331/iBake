@@ -22,31 +22,31 @@ class RecipeCell : UITableViewCell {
         if(favoritedRecipe.currentImage != heartfull_img) { // hasn't been favorited
             favoritedRecipe.setImage(heartfull_img, forState: UIControlState.Normal)
             
-            var favoritesArray = [Int]()
+            var favoritesArray = [String]()
             
             
             if (NSUserDefaults.standardUserDefaults().objectForKey("favoritesArray") != nil) {
-                favoritesArray = NSUserDefaults.standardUserDefaults().objectForKey("favoritesArray")! as! [Int]
+                favoritesArray = NSUserDefaults.standardUserDefaults().objectForKey("favoritesArray")! as! [String]
             }
             
-            favoritesArray.append(RecipeID!)
+            favoritesArray.append(Title.text!)
             NSUserDefaults.standardUserDefaults().setObject(favoritesArray, forKey: "favoritesArray")
-//            NSUserDefaults.standardUserDefaults().synchronize()
+            NSUserDefaults.standardUserDefaults().synchronize()
             // add to favorites list
         } else {
             let heartoutline_img = UIImage(named: "heart_outline.png")
             favoritedRecipe.setImage(heartoutline_img, forState: UIControlState.Normal)
             
             //remove from favorites list
-            var favoritesArray = [Int]()
+            var favoritesArray = [String]()
             
-            if (NSUserDefaults.standardUserDefaults().stringForKey("favoritesArray") != nil) {
-                favoritesArray = NSUserDefaults.standardUserDefaults().objectForKey("favoritesArray")! as! [Int]
+            if (NSUserDefaults.standardUserDefaults().objectForKey("favoritesArray") != nil) {
+                favoritesArray = NSUserDefaults.standardUserDefaults().objectForKey("favoritesArray")! as! [String]
             }
             
-            favoritesArray = favoritesArray.filter{$0 == RecipeID!}
+            favoritesArray = favoritesArray.filter{$0 == Title.text!}
             NSUserDefaults.standardUserDefaults().setObject(favoritesArray, forKey: "favoritesArray")
-//            NSUserDefaults.standardUserDefaults().synchronize()
+            NSUserDefaults.standardUserDefaults().synchronize()
             
         }
         
