@@ -11,7 +11,7 @@ INFO 498B - Final Project
 
 
 ###Optional User Stories
-* As an avid baker, I want to be able to store recipes that I like so I can refer to them later.
+* `Sorta - have a favorites feature` As an avid baker, I want to be able to store recipes that I like so I can refer to them later.
 * As a user with baker friends, I want to share my favorite recipes on Facebook so that my friends can try them out.
 * `DONE - on main list view` As an amateur baker, I want to be able to see what the finished product will look like so I may know how badly I messed up.
 * `DONE - in the ingredients view` As an avid baker, I want to be able to see how long each recipes take so I can choose the right recipe given the amount of time I have available.
