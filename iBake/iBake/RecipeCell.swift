@@ -45,12 +45,19 @@ class RecipeCell : UITableViewCell {
                 favoritesArray = NSUserDefaults.standardUserDefaults().objectForKey("favoritesArray")! as! [String]
             }
             
-            favoritesArray = favoritesArray.filter{$0 == Title.text!}
-            if (favoritesArray.count == 0){
+            if (favoritesArray.count == 1){
                 NSUserDefaults.standardUserDefaults().setBool(false, forKey: "setFavorites")
+                NSUserDefaults.standardUserDefaults().setObject([String](), forKey: "favoritesArray")
+                NSUserDefaults.standardUserDefaults().synchronize()
+            } else{
+                favoritesArray = favoritesArray.filter{!$0.containsString(Title.text!)}
+                
+                NSUserDefaults.standardUserDefaults().setObject(favoritesArray, forKey: "favoritesArray")
+                NSUserDefaults.standardUserDefaults().synchronize()
+                
             }
-            NSUserDefaults.standardUserDefaults().setObject(favoritesArray, forKey: "favoritesArray")
-            NSUserDefaults.standardUserDefaults().synchronize()
+            
+            
             
         }
         
